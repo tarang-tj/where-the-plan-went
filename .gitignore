@@ -8,3 +8,4 @@ data/work/
 .pytest_cache/
 .ruff_cache/
 data/program/
+outputs/probe-*.png

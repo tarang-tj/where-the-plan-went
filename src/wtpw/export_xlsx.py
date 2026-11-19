@@ -4,6 +4,7 @@ Usage: python -m wtpw.export_xlsx   -> outputs/where-the-plan-went.xlsx
 Inputs are written as values and derived columns as formulas (volume, other, check, mid, error,
 inside, CPI, SPI, EAC). tests/test_export_xlsx.py evaluates those formulas against the CSVs.
 """
+from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
@@ -126,6 +127,9 @@ def build(out: Path = OUT, gold: Path = GOLD, curated: Path = Path("curated"),
     program_sheet(wb, pd.read_csv(program / "program_evm.csv"))
     sources_sheet(wb, pd.read_csv(work / "filings.csv"), manifest)
     out.parent.mkdir(parents=True, exist_ok=True)
+    # Pin document timestamps so an unchanged build writes a byte-identical workbook.
+    stamp = datetime(2026, 1, 1)
+    wb.properties.created = wb.properties.modified = stamp
     wb.save(out)
     return out
 

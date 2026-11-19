@@ -152,10 +152,14 @@ def write_pdf(md: str, pdf: Path = PDF) -> Path:
 
 
 def main() -> None:
+    before = MEMO.read_text() if MEMO.exists() else None
     try:
         md = build_markdown()
     except MemoError as e:
         sys.exit(f"memo: FAIL\n{e}")
+    if md == before and PDF.exists():  # Chrome stamps a creation date; only rebuild when the text changed
+        print(f"memo: {MEMO} unchanged; kept {PDF}")
+        return
     print(f"memo: wrote {MEMO} and {write_pdf(md)}")
 
 

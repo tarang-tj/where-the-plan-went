@@ -5,7 +5,7 @@ Usage: python -m wtpw.findings   (after `python -m wtpw.pipeline local`)
 from __future__ import annotations
 
 import json
-import subprocess
+import hashlib
 from pathlib import Path
 
 import pandas as pd
@@ -129,9 +129,13 @@ def main() -> None:
     # Undefined values (TCPI at completion) become null: browsers reject a bare NaN in JSON.
     program = {name: pd.read_csv(f"data/program/program_{name}.csv").astype(object)
                .where(lambda d: d.notna(), None).to_dict("records") for name in ("evm", "revrec")}
-    commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
+    # A hash of the inputs, not the git commit: committing data.json would change the commit it names.
+    inputs = sorted(Path("curated").glob("*.csv")) + [Path("reference/measure_families.csv"),
+                                                       GOLD / "gold_cube.csv"]
+    lines = sorted(line for p in inputs for line in p.read_bytes().splitlines())  # gold row order varies
+    digest = hashlib.sha256(b"\n".join(lines)).hexdigest()[:12]
     data = {
-        "meta": {"built_from_commit": commit, "filings": n_filings, "facts": n_facts,
+        "meta": {"inputs_sha256": digest, "filings": n_filings, "facts": n_facts,
                  "curated_rows": int(len(g) + len(charges) + len(eac))},
         "numbers": {n["key"]: {"value": n["value"], "display": n["display"]} for n in nums},
         "walks": walks(g, charges),
