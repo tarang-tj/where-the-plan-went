@@ -9,6 +9,6 @@ include:
 targets:
   dev:
     default: true
-    mode: development
     workspace:
       profile: pf
+      root_path: ~/.bundle/${bundle.name}/${bundle.target}

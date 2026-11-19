@@ -1,0 +1,25 @@
+# Unity Catalog schema + volume for raw inputs, and the medallion pipeline.
+# Bronze reads files uploaded to the volume (Free Edition serverless cannot reach sec.gov).
+resources:
+  schemas:
+    wtpw:
+      catalog_name: workspace
+      name: wtpw
+      comment: Where the plan went - defense-prime plan vs actual from public SEC filings
+  volumes:
+    raw:
+      catalog_name: workspace
+      schema_name: ${resources.schemas.wtpw.name}
+      name: raw
+      comment: Inputs as filed (XBRL facts parquet) and curated, quote-checked CSVs
+  pipelines:
+    medallion:
+      name: wtpw-medallion
+      catalog: workspace
+      schema: ${resources.schemas.wtpw.name}
+      serverless: true
+      libraries:
+        - file:
+            path: ../pipeline/bronze.sql
+        - file:
+            path: ../pipeline/silver_gold.sql

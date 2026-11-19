@@ -17,7 +17,7 @@ from wtpw.filings import COMPANIES, filing_index, filing_url, folder_items, inst
 from wtpw.sec_client import get
 
 WORK = Path("data/work")
-EX99 = re.compile(r"(ex-?99[-_.]?0?1|ex991|exhibit99[-_]?1|earningsrelea)", re.IGNORECASE)
+EX99 = re.compile(r"(ex-?99|exhibi|earningsrelea|pressrelease)", re.IGNORECASE)
 
 
 def earnings_exhibit(names: list[str]) -> str | None:
