@@ -54,7 +54,7 @@ def line() -> dict:
 
 def text() -> dict:
     return {"widget": {"name": "title", "multilineTextboxSpec": {"lines": [
-        "## Where the plan went\n",
+        "## Defense Finance Model on Databricks\n",
         ("Lockheed, Northrop, RTX and L3Harris guidance (plan, three updates, actual) from SEC filings, "
         "bridged to the program charges each company disclosed. Built by the wtpw-medallion pipeline.")]}},
         "position": {"x": 0, "y": 0, "width": 6, "height": 2}}

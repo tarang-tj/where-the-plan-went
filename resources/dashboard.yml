@@ -8,6 +8,6 @@ variables:
 resources:
   dashboards:
     plan_vs_actual:
-      display_name: Where the plan went
+      display_name: Defense Finance Model on Databricks
       file_path: ../dashboards/where-the-plan-went.lvdash.json
       warehouse_id: ${var.warehouse_id}

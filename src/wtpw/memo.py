@@ -136,7 +136,7 @@ th,td{border:1px solid #bbb;padding:2pt 6pt;text-align:left}th{background:#eef1f
 def write_pdf(md: str, pdf: Path = PDF) -> Path:
     from playwright.sync_api import sync_playwright
 
-    doc = (f"<!doctype html><html lang='en'><head><meta charset='utf-8'><title>Where the plan went</title>"
+    doc = (f"<!doctype html><html lang='en'><head><meta charset='utf-8'><title>Defense Finance Model on Databricks</title>"
            f"<style>{CSS}</style></head><body>{to_html(md)}</body></html>")
     pdf.parent.mkdir(parents=True, exist_ok=True)
     with sync_playwright() as p:

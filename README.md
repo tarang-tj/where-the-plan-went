@@ -1,4 +1,4 @@
-# Where the plan went
+# Defense Finance Model on Databricks
 
 Every January, Lockheed Martin, Northrop Grumman, RTX and L3Harris publish a plan for the year. They update it three times, then report what happened. This project rebuilds that plan, forecast and actual history for 2019 to 2025 from SEC filings, in a planning cube on Databricks, and bridges each profit miss to the program charges the companies disclosed.
 

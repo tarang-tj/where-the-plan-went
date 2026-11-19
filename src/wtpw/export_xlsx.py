@@ -37,7 +37,7 @@ def readme(wb):
     ws = wb.active
     ws.title = "README"
     lines = [
-        "Where the plan went: defense-prime guidance vs actual, from SEC filings",
+        "Defense Finance Model on Databricks: defense-prime guidance vs actual, from SEC filings",
         "Amounts are $M unless the metric is EPS ($ per share). Every number outside the Program sheet traces to an SEC filing.",
         "",
         "Sheets",

@@ -5,7 +5,7 @@ resources:
     wtpw:
       catalog_name: workspace
       name: wtpw
-      comment: Where the plan went - defense-prime plan vs actual from public SEC filings
+      comment: Defense Finance Model on Databricks - defense-prime plan vs actual from public SEC filings
   volumes:
     raw:
       catalog_name: workspace
