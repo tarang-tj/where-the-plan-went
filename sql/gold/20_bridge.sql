@@ -11,10 +11,11 @@ WITH plan AS (
          MAX(CASE WHEN account = 'SegmentOP' THEN mid END) AS plan_op
   FROM silver_guidance WHERE scenario = 'Plan' GROUP BY ticker, fiscal_year
 ), actual AS (
+  -- Actual on the same measure as the plan: the year-end release row, not the 10-K tag.
   SELECT ticker, fiscal_year,
-         MAX(CASE WHEN account = 'Sales' THEN value_usd_m END) AS actual_sales,
-         MAX(CASE WHEN account = 'SegmentOP' THEN value_usd_m END) AS actual_op
-  FROM gold_cube WHERE scenario = 'Actual' AND entity = ticker GROUP BY ticker, fiscal_year
+         MAX(CASE WHEN account = 'Sales' THEN mid END) AS actual_sales,
+         MAX(CASE WHEN account = 'SegmentOP' THEN mid END) AS actual_op
+  FROM silver_guidance WHERE scenario = 'Actual' GROUP BY ticker, fiscal_year
 ), charges AS (
   SELECT ticker, fiscal_year, SUM(amount_usd_m) AS charges FROM silver_charges GROUP BY ticker, fiscal_year
 )

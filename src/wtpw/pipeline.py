@@ -23,9 +23,9 @@ VOLUME = "/Volumes/workspace/wtpw/raw"
 # name -> (local path, volume file, format)
 BRONZE = {
     "bronze_facts": ("data/work/facts.parquet", "facts.parquet", "parquet"),
-    "bronze_guidance": ("curated/guidance.csv", "curated/guidance.csv", "csv"),
-    "bronze_charges": ("curated/charges.csv", "curated/charges.csv", "csv"),
-    "bronze_eac": ("curated/eac.csv", "curated/eac.csv", "csv"),
+    "bronze_guidance": ("curated/guidance_*.csv", "curated/guidance_*.csv", "csv"),
+    "bronze_charges": ("curated/charges_*.csv", "curated/charges_*.csv", "csv"),
+    "bronze_eac": ("curated/eac_*.csv", "curated/eac_*.csv", "csv"),
 }
 GOLD_EXPORT = ["gold_cube", "gold_bridge", "gold_guidance_error"]
 

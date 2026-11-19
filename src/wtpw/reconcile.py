@@ -4,8 +4,10 @@
    share the value; otherwise the "first reported" pick is arbitrary (the RTX intersegment trap).
 2. Segments vs consolidated: reported segment sales sum to consolidated sales within TOLERANCE
    (corporate / other lines explain small gaps; every gap is printed, large ones fail).
-3. Guidance chain: an update's printed prior range equals the earlier vintage's range is checked
-   when curated rows carry `prior_low/prior_high` (added with the full guidance build).
+3. Guidance chain: when an update prints the prior outlook beside the current one, that printed
+   prior equals the latest earlier vintage we recorded (catches a mis-assigned vintage or year).
+4. Actual cross-check: the year-end release's GAAP sales equal the 10-K XBRL consolidated sales,
+   and a "SegmentOP" actual equals the sum of XBRL segment operating income, within 0.5%.
 Exit 1 on any failure.
 """
 from __future__ import annotations
@@ -75,6 +77,31 @@ GROUP BY s.ticker, s.fiscal_year, c.value_usd_m
 ORDER BY s.ticker, s.fiscal_year
 """
 
+CHAIN_SQL = """
+WITH ordered AS (
+  SELECT *, CASE scenario WHEN 'Plan' THEN 0 WHEN 'Fcst_Q1' THEN 1 WHEN 'Fcst_Q2' THEN 2
+                          WHEN 'Fcst_Q3' THEN 3 END AS k
+  FROM silver_guidance WHERE scenario <> 'Actual'
+)
+SELECT cur.ticker, cur.fiscal_year, cur.account, cur.basis, cur.scenario,
+       cur.prior_low, cur.prior_high, prev.scenario AS prev_scenario, prev.low AS prev_low, prev.high AS prev_high
+FROM ordered cur
+JOIN ordered prev ON prev.ticker = cur.ticker AND prev.fiscal_year = cur.fiscal_year
+ AND prev.account = cur.account AND prev.basis = cur.basis AND prev.entity = cur.entity
+ AND prev.k = (SELECT MAX(k) FROM ordered p2 WHERE p2.ticker = cur.ticker AND p2.fiscal_year = cur.fiscal_year
+               AND p2.account = cur.account AND p2.basis = cur.basis AND p2.entity = cur.entity AND p2.k < cur.k)
+WHERE cur.prior_low IS NOT NULL
+"""
+
+ACTUAL_SQL = """
+SELECT g.ticker, g.fiscal_year, g.account, g.measure, g.mid AS release_actual, x.value_usd_m AS xbrl
+FROM silver_guidance g
+JOIN gold_cube x ON x.ticker = g.ticker AND x.fiscal_year = g.fiscal_year AND x.entity = g.ticker
+ AND x.scenario = 'Actual_XBRL' AND x.account = g.account
+WHERE g.scenario = 'Actual' AND g.unit = 'USD_M'
+  AND ((g.account = 'Sales' AND g.basis = 'GAAP') OR g.account = 'SegmentOP')
+"""
+
 
 def main() -> int:
     con = duckdb.connect(str(WORK / "local.duckdb"), read_only=True)
@@ -99,6 +126,21 @@ def main() -> int:
             print(f"  {'FAIL' if bad else 'gap '} {r.ticker} {r.fiscal_year}: segments {r.segment_sales:,.0f}"
                   f" less eliminations -> {r.net_segments:,.0f} vs consolidated {r.consolidated_sales:,.0f}"
                   f" ({r.gap_pct:+.2%})")
+    chain = con.execute(CHAIN_SQL).df()
+    print(f"[chain] {len(chain)} printed prior ranges checked")
+    for r in chain.itertuples(index=False):
+        if (r.prior_low, r.prior_high) != (r.prev_low, r.prev_high):
+            failures += 1
+            print(f"  FAIL {r.ticker} {r.fiscal_year} {r.account} {r.scenario}: printed prior "
+                  f"{r.prior_low}-{r.prior_high} != {r.prev_scenario} {r.prev_low}-{r.prev_high}")
+    actual = con.execute(ACTUAL_SQL).df()
+    print(f"[actuals] {len(actual)} release actuals cross-checked against XBRL")
+    for r in actual.itertuples(index=False):
+        gap = r.release_actual / r.xbrl - 1
+        if abs(gap) > 0.005:
+            failures += 1
+            print(f"  FAIL {r.ticker} {r.fiscal_year} {r.account} ({r.measure}): release {r.release_actual:,.0f}"
+                  f" vs XBRL {r.xbrl:,.0f} ({gap:+.2%})")
     print("reconcile:", "FAIL" if failures else "PASS", f"({failures} failures)")
     return 1 if failures else 0
 
