@@ -9,15 +9,15 @@ T = "workspace.wtpw"
 DATASETS = [
     {"name": "bridge_long", "displayName": "Plan variance vs named charges",
      "queryLines": [
-         f"SELECT concat(ticker, ' ', fiscal_year) AS company_year, 'Plan variance' AS measure, "
-         f"actual_op - plan_op AS usd_m FROM {T}.gold_bridge ",
-         f"UNION ALL SELECT concat(ticker, ' ', fiscal_year), 'Named program charges', named_charges "
-         f"FROM {T}.gold_bridge"]},
+         (f"SELECT concat(ticker, ' ', fiscal_year) AS company_year, 'Plan variance' AS measure, "
+         f"actual_op - plan_op AS usd_m FROM {T}.gold_bridge "),
+         (f"UNION ALL SELECT concat(ticker, ' ', fiscal_year), 'Named program charges', named_charges "
+         f"FROM {T}.gold_bridge")]},
     {"name": "guidance_error", "displayName": "Guidance error by vintage",
      "queryLines": [
-         "SELECT CASE scenario WHEN 'Plan' THEN '1 Plan' WHEN 'Fcst_Q1' THEN '2 Q1 update' "
+         ("SELECT CASE scenario WHEN 'Plan' THEN '1 Plan' WHEN 'Fcst_Q1' THEN '2 Q1 update' "
          "WHEN 'Fcst_Q2' THEN '3 Q2 update' ELSE '4 Q3 update' END AS vintage, account, "
-         f"abs(error_vs_mid) AS abs_error FROM {T}.gold_guidance_error WHERE account IN ('Sales', 'SegmentOP')"]},
+         f"abs(error_vs_mid) AS abs_error FROM {T}.gold_guidance_error WHERE account IN ('Sales', 'SegmentOP')")]},
 ]
 
 
@@ -55,8 +55,8 @@ def line() -> dict:
 def text() -> dict:
     return {"widget": {"name": "title", "multilineTextboxSpec": {"lines": [
         "## Where the plan went\n",
-        "Lockheed, Northrop, RTX and L3Harris guidance (plan, three updates, actual) from SEC filings, "
-        "bridged to the program charges each company disclosed. Built by the wtpw-medallion pipeline."]}},
+        ("Lockheed, Northrop, RTX and L3Harris guidance (plan, three updates, actual) from SEC filings, "
+        "bridged to the program charges each company disclosed. Built by the wtpw-medallion pipeline.")]}},
         "position": {"x": 0, "y": 0, "width": 6, "height": 2}}
 
 
