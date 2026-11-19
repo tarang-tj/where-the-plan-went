@@ -1,3 +1,17 @@
 ticker,cik,fiscal_year,entity,metric,value,unit,accession,document,quote
 LMT,936468,2025,LMT,NetEAC,75,USD_M,0001628280-26-004195,lmt-20251231.htm,our consolidated net profit booking rate adjustments increased segment operating profit by approximately $75 million in 2025
 LMT,936468,2024,LMT,NetEAC,-180,USD_M,0001628280-26-004195,lmt-20251231.htm,decreased segment operating profit by $180 million in 2024
+LMT,936468,2023,LMT,NetEAC,1585,USD_M,0001628280-26-004195,lmt-20251231.htm,"total net adjustments to segment operating profit $ 75 $ (180) $ 1,585"
+LMT,936468,2023,LMT.Aeronautics,NetEAC,465,USD_M,0001628280-26-004195,lmt-20251231.htm,(in millions): 2025 2024 2023 aeronautics $ (495) $ 90 $ 465
+LMT,936468,2024,LMT.Aeronautics,NetEAC,90,USD_M,0001628280-26-004195,lmt-20251231.htm,(in millions): 2025 2024 2023 aeronautics $ (495) $ 90 $ 465
+LMT,936468,2023,LMT.MissilesAndFireControl,NetEAC,375,USD_M,0001628280-26-004195,lmt-20251231.htm,missiles and fire control 500 (805) 375
+LMT,936468,2024,LMT.MissilesAndFireControl,NetEAC,-805,USD_M,0001628280-26-004195,lmt-20251231.htm,missiles and fire control 500 (805) 375
+LMT,936468,2023,LMT.RotaryAndMissionSystems,NetEAC,465,USD_M,0001628280-26-004195,lmt-20251231.htm,rotary and mission systems (300) 310 465
+LMT,936468,2024,LMT.RotaryAndMissionSystems,NetEAC,310,USD_M,0001628280-26-004195,lmt-20251231.htm,rotary and mission systems (300) 310 465
+LMT,936468,2023,LMT.Space,NetEAC,280,USD_M,0001628280-26-004195,lmt-20251231.htm,space 370 225 280 total net adjustments
+LMT,936468,2024,LMT.Space,NetEAC,225,USD_M,0001628280-26-004195,lmt-20251231.htm,space 370 225 280 total net adjustments
+LMT,936468,2018,LMT,NetEAC,1.9,USD_B,0000936468-19-000009,lmtq4201810k.htm,"our consolidated net adjustments not related to volume, including net profit booking rate adjustments and other items, net of state income taxes, increased segment operating profit by approximately $1.9 billion in 2018"
+LMT,936468,2019,LMT,NetEAC,1.9,USD_B,0000936468-20-000016,lmtq4201910k.htm,"our consolidated net adjustments not related to volume, including net profit booking rate adjustments and other items, net of state income taxes, increased segment operating profit by approximately $1.9 billion in both 2019 and 2018"
+LMT,936468,2020,LMT,NetEAC,1.8,USD_B,0000936468-21-000013,lmt-20201231.htm,"our consolidated net adjustments not related to volume, including net profit booking rate adjustments and other matters, increased segment operating profit by approximately $1.8 billion in 2020"
+LMT,936468,2021,LMT,NetEAC,2.0,USD_B,0000936468-22-000008,lmt-20211231.htm,"our consolidated net adjustments not related to volume, including net profit booking rate adjustments and other matters, increased segment operating profit by approximately $2.0 billion in 2021"
+LMT,936468,2022,LMT,NetEAC,1.8,USD_B,0000936468-23-000009,lmt-20221231.htm,our consolidated net profit booking rate adjustments increased segment operating profit by approximately $1.8 billion in 2022
