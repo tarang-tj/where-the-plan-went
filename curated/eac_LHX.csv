@@ -1,0 +1,15 @@
+ticker,cik,fiscal_year,entity,metric,value,unit,accession,document,quote
+LHX,202058,2020,LHX,FavEAC,714,USD_M,0000202058-21-000008,hrs-20210101.htm,favorable adjustments $ 714 $ 303 $ 138 $ 127 unfavorable adjustments (314) (166) (121) (146) net operating income adjustments $ 400
+LHX,202058,2020,LHX,UnfavEAC,-314,USD_M,0000202058-21-000008,hrs-20210101.htm,favorable adjustments $ 714 $ 303 $ 138 $ 127 unfavorable adjustments (314) (166) (121) (146) net operating income adjustments $ 400
+LHX,202058,2020,LHX,NetEAC,400,USD_M,0000202058-21-000008,hrs-20210101.htm,favorable adjustments $ 714 $ 303 $ 138 $ 127 unfavorable adjustments (314) (166) (121) (146) net operating income adjustments $ 400
+LHX,202058,2021,LHX,FavEAC,620,USD_M,0000202058-22-000015,hrs-20211231.htm,favorable adjustments $ 620 $ 714 $ 303 $ 138 unfavorable adjustments (316) (314) (166) (121) net operating income adjustments $ 304
+LHX,202058,2021,LHX,UnfavEAC,-316,USD_M,0000202058-22-000015,hrs-20211231.htm,favorable adjustments $ 620 $ 714 $ 303 $ 138 unfavorable adjustments (316) (314) (166) (121) net operating income adjustments $ 304
+LHX,202058,2021,LHX,NetEAC,304,USD_M,0000202058-22-000015,hrs-20211231.htm,favorable adjustments $ 620 $ 714 $ 303 $ 138 unfavorable adjustments (316) (314) (166) (121) net operating income adjustments $ 304
+LHX,202058,2022,LHX,FavEAC,454,USD_M,0000202058-23-000014,hrs-20221230.htm,favorable adjustments $ 454 $ 620 $ 714 unfavorable adjustments (418) (316) (314) net operating income adjustments $ 36
+LHX,202058,2022,LHX,UnfavEAC,-418,USD_M,0000202058-23-000014,hrs-20221230.htm,favorable adjustments $ 454 $ 620 $ 714 unfavorable adjustments (418) (316) (314) net operating income adjustments $ 36
+LHX,202058,2022,LHX,NetEAC,36,USD_M,0000202058-23-000014,hrs-20221230.htm,favorable adjustments $ 454 $ 620 $ 714 unfavorable adjustments (418) (316) (314) net operating income adjustments $ 36
+LHX,202058,2023,LHX,FavEAC,593,USD_M,0000202058-24-000029,hrs-20231229.htm,favorable adjustments $ 593 $ 454 unfavorable adjustments (678) (418) net operating income adjustments $ (85)
+LHX,202058,2023,LHX,UnfavEAC,-678,USD_M,0000202058-24-000029,hrs-20231229.htm,favorable adjustments $ 593 $ 454 unfavorable adjustments (678) (418) net operating income adjustments $ (85)
+LHX,202058,2023,LHX,NetEAC,-85,USD_M,0000202058-24-000029,hrs-20231229.htm,favorable adjustments $ 593 $ 454 unfavorable adjustments (678) (418) net operating income adjustments $ (85)
+LHX,202058,2024,LHX,NetEAC,39,USD_M,0000202058-25-000023,hrs-20250103.htm,"net eac adjustments, before income taxes $ 39 $ ( 85 ) $ 36"
+LHX,202058,2025,LHX,NetEAC,47,USD_M,0000202058-26-000015,hrs-20260102.htm,"in fiscal 2025 and fiscal 2024, earnings were impacted by recognition of net favorable eac adjustments of $47 million"
