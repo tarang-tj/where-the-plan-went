@@ -87,13 +87,29 @@ def main() -> None:
     bridge = pd.read_csv(GOLD / "gold_bridge.csv")
     err = pd.read_csv(GOLD / "gold_guidance_error.csv")
     nums = numbers(bridge, err)
-    pd.DataFrame(nums).to_csv(OUT / "numbers.csv", index=False)
     g, charges, eac = _curated("guidance"), _curated("charges"), _curated("eac")
+    n_filings = int(pd.read_csv(WORK / "filings.csv").shape[0])
+    n_facts = int(pd.read_parquet(WORK / "facts.parquet").shape[0])
+    # Segment-profit guidance midpoints per vintage, for the company-years that have a bridge.
+    seg = g[(g.metric == "SegmentOP")].assign(mid=lambda d: (d.low + d.high) / 2)
+    for r in seg.merge(bridge[["ticker", "fiscal_year"]], on=["ticker", "fiscal_year"]).itertuples():
+        nums.append({"key": f"walk_{r.ticker}_{r.fiscal_year}_SegmentOP_{r.vintage}", "value": float(r.mid),
+                     "display": f"{r.mid:,.0f}", "note": f"{r.ticker} {r.fiscal_year} segment profit {r.vintage} midpoint, $M"})
+    nums += [
+        {"key": "filings", "value": n_filings, "display": f"{n_filings:,}", "note": "SEC filings cached and read"},
+        {"key": "facts", "value": n_facts, "display": f"{n_facts:,}", "note": "XBRL facts parsed"},
+        {"key": "curated_rows", "value": len(g) + len(charges) + len(eac),
+         "display": f"{len(g) + len(charges) + len(eac):,}", "note": "hand-curated rows, each quote-checked"},
+        {"key": "large_miss_threshold", "value": LARGE_MISS, "display": f"${LARGE_MISS:,.0f} million",
+         "note": "a large miss is this far below plan"},
+        {"key": "charge_threshold", "value": 100.0, "display": "$100 million",
+         "note": "curation contract: a program qualifies at this annual loss"},
+    ]
+    pd.DataFrame(nums).to_csv(OUT / "numbers.csv", index=False)
     program = {name: pd.read_csv(f"data/program/program_{name}.csv").to_dict("records") for name in ("evm", "revrec")}
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
     data = {
-        "meta": {"commit": commit, "filings": int(pd.read_csv(WORK / "filings.csv").shape[0]),
-                 "facts": int(pd.read_parquet(WORK / "facts.parquet").shape[0]),
+        "meta": {"commit": commit, "filings": n_filings, "facts": n_facts,
                  "curated_rows": int(len(g) + len(charges) + len(eac))},
         "numbers": {n["key"]: {"value": n["value"], "display": n["display"]} for n in nums},
         "walks": walks(g, charges),
