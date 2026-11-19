@@ -20,7 +20,7 @@ In all {{large_misses}} large misses, the profit outlook did not come down until
 
 ## What it means for a program finance team
 
-At these companies the annual plan inherits its error from a few fixed-price development programs, and in these years the company outlook did not move until a program's estimate at completion did. That puts the early warning in program-level earned value, not in the consolidated forecast. The repository pairs the public data with one synthetic program that walks through that mechanism: earned value slips, the composite EAC passes the contract price, and cost-to-cost revenue recognition books a reach-forward loss.
+At these companies the annual plan inherits its error from a few fixed-price development programs, and in these years the company outlook did not move until a program's estimate at completion did. That puts the early warning in program-level earned value. The repository pairs the public data with one synthetic program that walks through that mechanism: earned value slips, the composite EAC passes the contract price, and cost-to-cost revenue recognition books a reach-forward loss.
 
 ## Limits
 
