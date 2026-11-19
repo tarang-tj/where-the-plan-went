@@ -109,7 +109,9 @@ def main() -> None:
          "note": "curation contract: a program qualifies at this annual loss"},
     ]
     pd.DataFrame(nums).to_csv(OUT / "numbers.csv", index=False)
-    program = {name: pd.read_csv(f"data/program/program_{name}.csv").to_dict("records") for name in ("evm", "revrec")}
+    # Undefined values (TCPI at completion) become null: browsers reject a bare NaN in JSON.
+    program = {name: pd.read_csv(f"data/program/program_{name}.csv").astype(object)
+               .where(lambda d: d.notna(), None).to_dict("records") for name in ("evm", "revrec")}
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
     data = {
         "meta": {"commit": commit, "filings": n_filings, "facts": n_facts,
@@ -124,7 +126,7 @@ def main() -> None:
                                        .itertuples(index=False)]).drop(columns=["cik"]).to_dict("records"),
         "program": program,
     }
-    (WEB / "data.json").write_text(json.dumps(data, separators=(",", ":"), default=str))
+    (WEB / "data.json").write_text(json.dumps(data, separators=(",", ":"), default=str, allow_nan=False))
     print(f"numbers.csv: {len(nums)} keys; data.json: {len(data['walks'])} walks, "
           f"{len(data['bridges'])} bridges, {len(data['charges'])} charges")
 

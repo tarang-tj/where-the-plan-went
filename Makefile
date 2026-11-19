@@ -36,7 +36,10 @@ parity:     ## Databricks gold == DuckDB gold
 findings: local
 	$(PY) -m wtpw.findings
 
-gate: lint test contract quotes reconcile findings
+probe:      ## boot the page in Chrome at 1440 and 375 px
+	$(PY) -m wtpw.probe
+
+gate: lint test contract quotes reconcile findings memo probe
 	@echo "local gate: PASS"
 
 .PHONY: xlsx memo

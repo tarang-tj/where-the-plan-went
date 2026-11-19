@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Where the plan went: defense-prime guidance against what they reported</title>
+<meta name="description" content="Release-by-release guidance from Lockheed Martin, Northrop Grumman, RTX and L3Harris, bridged to the program charges their filings name.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<a class="skip" href="#cube">Skip to the company-year table</a>
+<main class="wrap">
+
+<section id="hero" aria-labelledby="hero-h">
+  <p class="kicker" id="hero-kicker">Where the plan went</p>
+  <h1 id="hero-h">Loading the filings.</h1>
+  <p class="sub" id="hero-sub"></p>
+  <form class="pick" aria-label="Choose what to show" onsubmit="return false">
+    <label>Company <select id="pick-ticker"></select></label>
+    <label>Year <select id="pick-year"></select></label>
+    <label>Metric <select id="pick-account"></select></label>
+  </form>
+  <div class="stage" id="walk"></div>
+  <p class="hint">Each bar is the guidance range printed in that release; the dot is the reported result. Select a bar or a charge to open the SEC filing.</p>
+</section>
+
+<section id="bridge" aria-labelledby="bridge-h">
+  <h2 id="bridge-h">Where the profit went</h2>
+  <p class="sub" id="bridge-sub"></p>
+  <div id="bridge-chart" class="chart"></div>
+  <ol id="bridge-quotes" class="quotes"></ol>
+</section>
+
+<section id="pattern" aria-labelledby="pattern-h">
+  <h2 id="pattern-h">The pattern</h2>
+  <p class="sub" id="pattern-text"></p>
+  <div id="pattern-chart" class="pattern"></div>
+</section>
+
+<section id="errors" aria-labelledby="errors-h">
+  <h2 id="errors-h">Guidance is conservative</h2>
+  <p class="sub" id="errors-text"></p>
+  <div id="errors-grid" class="cards"></div>
+  <p class="hint">Miss is |actual / midpoint &minus; 1|. Beat means the result came in above the midpoint.</p>
+</section>
+
+<section id="cube" aria-labelledby="cube-h">
+  <p class="kicker" id="cube-kicker">Planning cube</p>
+  <h2 id="cube-h">Plan vs actual, every company-year</h2>
+  <p class="sub">Plan is the midpoint of the first outlook for the year; variance is actual minus plan. Select a row to show it at the top. The metric follows the selector above.</p>
+  <table id="cube-table" class="cube"></table>
+</section>
+
+<section id="program" aria-labelledby="program-h">
+  <h2 id="program-h">Inside one program <span class="tag">Synthetic</span></h2>
+  <p class="sub" id="program-text"></p>
+  <div class="pair">
+    <div id="program-eac" class="chart"></div>
+    <div id="program-gp" class="chart"></div>
+  </div>
+</section>
+
+<section id="method" aria-labelledby="method-h">
+  <h2 id="method-h">Method and sources</h2>
+  <div id="method-body" class="method"></div>
+</section>
+
+</main>
+<noscript><p class="wrap">This page draws its charts with JavaScript from data.json.</p></noscript>
+</body>
+</html>
