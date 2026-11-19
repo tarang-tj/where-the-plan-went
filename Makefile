@@ -33,5 +33,8 @@ run:
 parity:     ## Databricks gold == DuckDB gold
 	$(PY) -m wtpw.parity
 
-gate: lint test contract quotes reconcile
+findings: local
+	$(PY) -m wtpw.findings
+
+gate: lint test contract quotes reconcile findings
 	@echo "local gate: PASS"

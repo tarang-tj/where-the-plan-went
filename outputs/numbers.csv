@@ -1,0 +1,129 @@
+key,value,display,note
+bridge_company_years,10.0,10,company-years with a dollar segment-profit plan and actual
+large_misses,4.0,4,misses of more than $300M below plan
+large_miss_min_charge_cover,0.980503144654088,98%,smallest share of a large miss covered by named charges
+other_years_worst_miss,-46.0,-46,"worst plan variance among the other years, $M"
+bridge_LMT_2021_plan_op,7425.0,"7,425","LMT 2021 plan_op, $M"
+bridge_LMT_2021_volume,-82.79203539823008,-83,"LMT 2021 volume, $M"
+bridge_LMT_2021_named_charges,-225.0,-225,"LMT 2021 named_charges, $M"
+bridge_LMT_2021_other,261.7920353982301,+262,"LMT 2021 other, $M"
+bridge_LMT_2021_actual_op,7379.0,"7,379","LMT 2021 actual_op, $M"
+bridge_LMT_2021_miss,-46.0,-46,"LMT 2021 miss, $M"
+bridge_LMT_2024_plan_op,7275.0,"7,275","LMT 2024 plan_op, $M"
+bridge_LMT_2024_volume,188.3620938628159,+188,"LMT 2024 volume, $M"
+bridge_LMT_2024_named_charges,-1965.0,"-1,965","LMT 2024 named_charges, $M"
+bridge_LMT_2024_other,584.637906137184,+585,"LMT 2024 other, $M"
+bridge_LMT_2024_actual_op,6083.0,"6,083","LMT 2024 actual_op, $M"
+bridge_LMT_2024_miss,-1192.0,"-1,192","LMT 2024 miss, $M"
+bridge_LMT_2025_plan_op,8150.0,"8,150","LMT 2025 plan_op, $M"
+bridge_LMT_2025_volume,87.59191919191919,+88,"LMT 2025 volume, $M"
+bridge_LMT_2025_named_charges,-1615.0,"-1,615","LMT 2025 named_charges, $M"
+bridge_LMT_2025_other,120.40808080808074,+120,"LMT 2025 other, $M"
+bridge_LMT_2025_actual_op,6743.0,"6,743","LMT 2025 actual_op, $M"
+bridge_LMT_2025_miss,-1407.0,"-1,407","LMT 2025 miss, $M"
+bridge_NOC_2025_plan_op,4725.0,"4,725","NOC 2025 plan_op, $M"
+bridge_NOC_2025_volume,-33.10295857988166,-33,"NOC 2025 volume, $M"
+bridge_NOC_2025_named_charges,-477.0,-477,"NOC 2025 named_charges, $M"
+bridge_NOC_2025_other,162.10295857988166,+162,"NOC 2025 other, $M"
+bridge_NOC_2025_actual_op,4377.0,"4,377","NOC 2025 actual_op, $M"
+bridge_NOC_2025_miss,-348.0,-348,"NOC 2025 miss, $M"
+bridge_LMT_2023_plan_op,7305.0,"7,305","LMT 2023 plan_op, $M"
+bridge_LMT_2023_volume,230.9718320610687,+231,"LMT 2023 volume, $M"
+bridge_LMT_2023_named_charges,-100.0,-100,"LMT 2023 named_charges, $M"
+bridge_LMT_2023_other,-46.97183206106871,-47,"LMT 2023 other, $M"
+bridge_LMT_2023_actual_op,7389.0,"7,389","LMT 2023 actual_op, $M"
+bridge_LMT_2023_miss,84.0,+84,"LMT 2023 miss, $M"
+bridge_NOC_2023_plan_op,4350.0,"4,350","NOC 2023 plan_op, $M"
+bridge_NOC_2023_volume,124.12303664921465,+124,"NOC 2023 volume, $M"
+bridge_NOC_2023_named_charges,-1559.0,"-1,559","NOC 2023 named_charges, $M"
+bridge_NOC_2023_other,-155.12303664921455,-155,"NOC 2023 other, $M"
+bridge_NOC_2023_actual_op,2760.0,"2,760","NOC 2023 actual_op, $M"
+bridge_NOC_2023_miss,-1590.0,"-1,590","NOC 2023 miss, $M"
+bridge_LMT_2019_plan_op,6075.0,"6,075","LMT 2019 plan_op, $M"
+bridge_LMT_2019_volume,356.1132743362832,+356,"LMT 2019 volume, $M"
+bridge_LMT_2019_named_charges,-0.0,-0,"LMT 2019 named_charges, $M"
+bridge_LMT_2019_other,142.8867256637168,+143,"LMT 2019 other, $M"
+bridge_LMT_2019_actual_op,6574.0,"6,574","LMT 2019 actual_op, $M"
+bridge_LMT_2019_miss,499.0,+499,"LMT 2019 miss, $M"
+bridge_LMT_2022_plan_op,7175.0,"7,175","LMT 2022 plan_op, $M"
+bridge_LMT_2022_volume,-1.7393939393939395,-2,"LMT 2022 volume, $M"
+bridge_LMT_2022_named_charges,-0.0,-0,"LMT 2022 named_charges, $M"
+bridge_LMT_2022_other,45.73939393939394,+46,"LMT 2022 other, $M"
+bridge_LMT_2022_actual_op,7219.0,"7,219","LMT 2022 actual_op, $M"
+bridge_LMT_2022_miss,44.0,+44,"LMT 2022 miss, $M"
+bridge_LMT_2020_plan_op,6875.0,"6,875","LMT 2020 plan_op, $M"
+bridge_LMT_2020_volume,205.49212598425197,+205,"LMT 2020 volume, $M"
+bridge_LMT_2020_named_charges,-0.0,-0,"LMT 2020 named_charges, $M"
+bridge_LMT_2020_other,71.50787401574803,+72,"LMT 2020 other, $M"
+bridge_LMT_2020_actual_op,7152.0,"7,152","LMT 2020 actual_op, $M"
+bridge_LMT_2020_miss,277.0,+277,"LMT 2020 miss, $M"
+bridge_NOC_2024_plan_op,4512.5,"4,512","NOC 2024 plan_op, $M"
+bridge_NOC_2024_volume,3.632012195121951,+4,"NOC 2024 volume, $M"
+bridge_NOC_2024_named_charges,-0.0,-0,"NOC 2024 named_charges, $M"
+bridge_NOC_2024_other,27.867987804878048,+28,"NOC 2024 other, $M"
+bridge_NOC_2024_actual_op,4544.0,"4,544","NOC 2024 actual_op, $M"
+bridge_NOC_2024_miss,31.5,+32,"NOC 2024 miss, $M"
+err_Sales_Plan_n,19.0,19,Sales Plan vintages scored
+err_Sales_Plan_median_abs,0.01115044247787611,1.1%,median |actual / midpoint - 1|
+err_Sales_Plan_beat_share,0.6842105263157895,68%,share where actual beat the midpoint
+err_Sales_Plan_inside_share,0.15789473684210525,16%,share where actual fell inside the range
+err_Sales_Fcst_Q1_n,20.0,20,Sales Fcst_Q1 vintages scored
+err_Sales_Fcst_Q1_median_abs,0.013967081141399773,1.4%,median |actual / midpoint - 1|
+err_Sales_Fcst_Q1_beat_share,0.7,70%,share where actual beat the midpoint
+err_Sales_Fcst_Q1_inside_share,0.15,15%,share where actual fell inside the range
+err_Sales_Fcst_Q2_n,21.0,21,Sales Fcst_Q2 vintages scored
+err_Sales_Fcst_Q2_median_abs,0.011195652173913051,1.1%,median |actual / midpoint - 1|
+err_Sales_Fcst_Q2_beat_share,0.6666666666666666,67%,share where actual beat the midpoint
+err_Sales_Fcst_Q2_inside_share,0.14285714285714285,14%,share where actual fell inside the range
+err_Sales_Fcst_Q3_n,23.0,23,Sales Fcst_Q3 vintages scored
+err_Sales_Fcst_Q3_median_abs,0.0061363636363636065,0.6%,median |actual / midpoint - 1|
+err_Sales_Fcst_Q3_beat_share,0.6956521739130435,70%,share where actual beat the midpoint
+err_Sales_Fcst_Q3_inside_share,0.043478260869565216,4%,share where actual fell inside the range
+err_SegmentOP_Plan_n,10.0,10,SegmentOP Plan vintages scored
+err_SegmentOP_Plan_median_abs,0.056970851370851394,5.7%,median |actual / midpoint - 1|
+err_SegmentOP_Plan_beat_share,0.5,50%,share where actual beat the midpoint
+err_SegmentOP_Plan_inside_share,0.2,20%,share where actual fell inside the range
+err_SegmentOP_Fcst_Q1_n,10.0,10,SegmentOP Fcst_Q1 vintages scored
+err_SegmentOP_Fcst_Q1_median_abs,0.032075279106858035,3.2%,median |actual / midpoint - 1|
+err_SegmentOP_Fcst_Q1_beat_share,0.6,60%,share where actual beat the midpoint
+err_SegmentOP_Fcst_Q1_inside_share,0.1,10%,share where actual fell inside the range
+err_SegmentOP_Fcst_Q2_n,10.0,10,SegmentOP Fcst_Q2 vintages scored
+err_SegmentOP_Fcst_Q2_median_abs,0.013004041896649166,1.3%,median |actual / midpoint - 1|
+err_SegmentOP_Fcst_Q2_beat_share,0.7,70%,share where actual beat the midpoint
+err_SegmentOP_Fcst_Q2_inside_share,0.1,10%,share where actual fell inside the range
+err_SegmentOP_Fcst_Q3_n,10.0,10,SegmentOP Fcst_Q3 vintages scored
+err_SegmentOP_Fcst_Q3_median_abs,0.006275157314473034,0.6%,median |actual / midpoint - 1|
+err_SegmentOP_Fcst_Q3_beat_share,0.7,70%,share where actual beat the midpoint
+err_SegmentOP_Fcst_Q3_inside_share,0.1,10%,share where actual fell inside the range
+err_EPS_Plan_n,17.0,17,EPS Plan vintages scored
+err_EPS_Plan_median_abs,0.07605633802816913,7.6%,median |actual / midpoint - 1|
+err_EPS_Plan_beat_share,0.6470588235294118,65%,share where actual beat the midpoint
+err_EPS_Plan_inside_share,0.17647058823529413,18%,share where actual fell inside the range
+err_EPS_Fcst_Q1_n,18.0,18,EPS Fcst_Q1 vintages scored
+err_EPS_Fcst_Q1_median_abs,0.051238418374005,5.1%,median |actual / midpoint - 1|
+err_EPS_Fcst_Q1_beat_share,0.7222222222222222,72%,share where actual beat the midpoint
+err_EPS_Fcst_Q1_inside_share,0.1111111111111111,11%,share where actual fell inside the range
+err_EPS_Fcst_Q2_n,18.0,18,EPS Fcst_Q2 vintages scored
+err_EPS_Fcst_Q2_median_abs,0.03278769339670329,3.3%,median |actual / midpoint - 1|
+err_EPS_Fcst_Q2_beat_share,0.7777777777777778,78%,share where actual beat the midpoint
+err_EPS_Fcst_Q2_inside_share,0.1111111111111111,11%,share where actual fell inside the range
+err_EPS_Fcst_Q3_n,20.0,20,EPS Fcst_Q3 vintages scored
+err_EPS_Fcst_Q3_median_abs,0.015206814651665401,1.5%,median |actual / midpoint - 1|
+err_EPS_Fcst_Q3_beat_share,0.85,85%,share where actual beat the midpoint
+err_EPS_Fcst_Q3_inside_share,0.15,15%,share where actual fell inside the range
+err_FCF_Plan_n,15.0,15,FCF Plan vintages scored
+err_FCF_Plan_median_abs,0.08965517241379306,9.0%,median |actual / midpoint - 1|
+err_FCF_Plan_beat_share,0.7333333333333333,73%,share where actual beat the midpoint
+err_FCF_Plan_inside_share,0.2,20%,share where actual fell inside the range
+err_FCF_Fcst_Q1_n,17.0,17,FCF Fcst_Q1 vintages scored
+err_FCF_Fcst_Q1_median_abs,0.08426229508196714,8.4%,median |actual / midpoint - 1|
+err_FCF_Fcst_Q1_beat_share,0.7058823529411765,71%,share where actual beat the midpoint
+err_FCF_Fcst_Q1_inside_share,0.23529411764705882,24%,share where actual fell inside the range
+err_FCF_Fcst_Q2_n,17.0,17,FCF Fcst_Q2 vintages scored
+err_FCF_Fcst_Q2_median_abs,0.05409090909090919,5.4%,median |actual / midpoint - 1|
+err_FCF_Fcst_Q2_beat_share,0.7058823529411765,71%,share where actual beat the midpoint
+err_FCF_Fcst_Q2_inside_share,0.35294117647058826,35%,share where actual fell inside the range
+err_FCF_Fcst_Q3_n,17.0,17,FCF Fcst_Q3 vintages scored
+err_FCF_Fcst_Q3_median_abs,0.05409090909090919,5.4%,median |actual / midpoint - 1|
+err_FCF_Fcst_Q3_beat_share,0.7058823529411765,71%,share where actual beat the midpoint
+err_FCF_Fcst_Q3_inside_share,0.35294117647058826,35%,share where actual fell inside the range
