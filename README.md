@@ -2,7 +2,7 @@
 
 Every January, Lockheed Martin, Northrop Grumman, RTX and L3Harris publish a plan for the year. They update it three times, then report what happened. This project rebuilds that plan, forecast and actual history for 2019 to 2025 from SEC filings, in a planning cube on Databricks, and bridges each profit miss to the program charges the companies disclosed.
 
-**Site:** https://tarang-tj.github.io/where-the-plan-went/ &nbsp;·&nbsp; **Memo:** [docs/memo.md](docs/memo.md) &nbsp;·&nbsp; **Workbook:** [outputs/where-the-plan-went.xlsx](outputs/where-the-plan-went.xlsx)
+**Site:** https://tarangj.com/where-the-plan-went/ &nbsp;·&nbsp; **Memo:** [docs/memo.md](docs/memo.md) &nbsp;·&nbsp; **Workbook:** [outputs/where-the-plan-went.xlsx](outputs/where-the-plan-went.xlsx)
 
 ## What it found
 
