@@ -45,6 +45,30 @@ SELECT ticker, fiscal_year, segment_name AS entity, account,
 FROM ranked
 WHERE rn = 1;
 
+CREATE OR REFRESH MATERIALIZED VIEW silver_segment_totals AS
+-- Total segment operating income per company-year, from the year's own 10-K. When the filer tags
+-- the total itself (OperatingSegmentsMember with no segment member, e.g. NOC after intersegment
+-- profit eliminations) that figure is used; otherwise the reported segments are summed (LMT).
+-- NOC tags its elimination as a POSITIVE fact that the filing subtracts, so it is never added.
+WITH tagged AS (
+  SELECT ticker, fiscal_year, MIN(value) / 1000000.0 AS total_usd_m, MIN(accession) AS accession
+  FROM bronze_facts
+  WHERE form = '10-K' AND is_current_period AND duration_days BETWEEN 350 AND 380
+    AND concept = 'us-gaap:OperatingIncomeLoss'
+    AND consolidation_item = 'us-gaap:OperatingSegmentsMember'
+    AND segment IS NULL AND other_dims = 0
+  GROUP BY ticker, fiscal_year
+), summed AS (
+  SELECT ticker, fiscal_year, SUM(value_usd_m) AS total_usd_m, MIN(accession) AS accession
+  FROM silver_segment_actuals WHERE account = 'SegmentOP'
+  GROUP BY ticker, fiscal_year
+)
+SELECT s.ticker, s.fiscal_year,
+       COALESCE(t.total_usd_m, s.total_usd_m) AS segment_op_usd_m,
+       CASE WHEN t.total_usd_m IS NOT NULL THEN 'tagged_total' ELSE 'sum_of_segments' END AS method,
+       COALESCE(t.accession, s.accession) AS accession
+FROM summed s LEFT JOIN tagged t ON t.ticker = s.ticker AND t.fiscal_year = s.fiscal_year;
+
 CREATE OR REFRESH MATERIALIZED VIEW silver_consolidated_actuals AS
 -- Company-level annual sales and operating profit (no dimensions), as first reported.
 SELECT ticker, fiscal_year, account, value / 1000000.0 AS value_usd_m, accession, filing_date
@@ -67,13 +91,19 @@ FROM (
 WHERE rn = 1;
 
 CREATE OR REFRESH MATERIALIZED VIEW silver_guidance AS
--- Guidance vintages (Plan = first annual outlook, Fcst_Q1..Q3 = later updates), typed.
--- Every row passed quote_check against the cached filing before upload.
+-- Guidance vintages (Plan = first annual outlook, Fcst_Q1..Q3 = later updates) and the Actual on
+-- the same measure, typed and in USD millions (billions as printed are converted here).
+-- Every row passed curation_contract and quote_check against the cached filing before upload.
 SELECT ticker, CAST(fiscal_year AS INT) AS fiscal_year, vintage AS scenario,
-       CAST(release_date AS DATE) AS release_date, accession, document, entity, metric AS account, basis,
-       CAST(low AS DOUBLE) AS low, CAST(high AS DOUBLE) AS high,
-       (CAST(low AS DOUBLE) + CAST(high AS DOUBLE)) / 2.0 AS mid, unit
-FROM bronze_guidance;
+       CAST(release_date AS DATE) AS release_date, accession, document, entity, metric AS account,
+       basis, measure,
+       TRY_CAST(low AS DOUBLE) * scale AS low,
+       TRY_CAST(high AS DOUBLE) * scale AS high,
+       (TRY_CAST(low AS DOUBLE) + TRY_CAST(high AS DOUBLE)) / 2.0 * scale AS mid,
+       TRY_CAST(prior_low AS DOUBLE) * scale AS prior_low,
+       TRY_CAST(prior_high AS DOUBLE) * scale AS prior_high,
+       CASE WHEN unit = 'USD_per_share' THEN 'USD_per_share' ELSE 'USD_M' END AS unit
+FROM (SELECT *, CASE WHEN unit = 'USD_B' THEN 1000.0 ELSE 1.0 END AS scale FROM bronze_guidance) g;
 
 CREATE OR REFRESH MATERIALIZED VIEW silver_charges AS
 -- Disclosed program charges (reach-forward losses), pre-tax, USD millions, positive = loss.
@@ -82,37 +112,39 @@ SELECT ticker, CAST(fiscal_year AS INT) AS fiscal_year, quarter, segment, progra
 FROM bronze_charges;
 
 CREATE OR REFRESH MATERIALIZED VIEW silver_eac AS
--- Disclosed EAC (profit booking rate) adjustment series, USD millions, sign as disclosed.
+-- Disclosed EAC (profit booking rate) adjustment series in USD millions (billions as printed are
+-- converted), signed so positive = increased operating income.
 SELECT ticker, CAST(fiscal_year AS INT) AS fiscal_year, entity, metric AS account,
-       CAST(value AS DOUBLE) AS value_usd_m, accession, document
+       CAST(value AS DOUBLE) * CASE WHEN unit = 'USD_B' THEN 1000.0 ELSE 1.0 END AS value_usd_m,
+       accession, document
 FROM bronze_eac;
 
 CREATE OR REFRESH MATERIALIZED VIEW gold_cube AS
--- OneStream-style cube in long form: Entity x Scenario x Account x Time, UD1 = program.
--- Actual Sales = consolidated; Actual SegmentOP = sum of reported segments (LMT's
--- "business segment operating profit"). Charges enter as negative ProgramCharge.
+-- OneStream-style cube in long form: Entity x Scenario x Account x Time, UD1 = program, UD2 = basis.
+-- Scenarios: Plan, Fcst_Q1..Q3, Actual (as reported in the year-end release, same measure as the
+-- guidance) and Actual_XBRL (as tagged in the 10-K; segment drill-down and the cross-check).
+-- Program charges enter as negative ProgramCharge; EAC series as disclosed.
 SELECT ticker, fiscal_year, entity, scenario, account, CAST(NULL AS STRING) AS ud1_program,
-       mid AS value_usd_m, low, high, 'guidance' AS source, accession
+       basis AS ud2_basis, mid AS value_usd_m, low, high, 'release' AS source, accession
 FROM silver_guidance
 UNION ALL
-SELECT ticker, fiscal_year, ticker, 'Actual', account, CAST(NULL AS STRING),
+SELECT ticker, fiscal_year, ticker, 'Actual_XBRL', account, CAST(NULL AS STRING), 'GAAP',
        value_usd_m, CAST(NULL AS DOUBLE), CAST(NULL AS DOUBLE), 'xbrl_consolidated', accession
 FROM silver_consolidated_actuals WHERE account = 'Sales'
 UNION ALL
-SELECT ticker, fiscal_year, ticker, 'Actual', 'SegmentOP', CAST(NULL AS STRING),
-       SUM(value_usd_m), CAST(NULL AS DOUBLE), CAST(NULL AS DOUBLE), 'xbrl_segments', MIN(accession)
-FROM silver_segment_actuals WHERE account = 'SegmentOP'
-GROUP BY ticker, fiscal_year
+SELECT ticker, fiscal_year, ticker, 'Actual_XBRL', 'SegmentOP', CAST(NULL AS STRING), method,
+       segment_op_usd_m, CAST(NULL AS DOUBLE), CAST(NULL AS DOUBLE), 'xbrl_segments', accession
+FROM silver_segment_totals
 UNION ALL
-SELECT ticker, fiscal_year, ticker || '.' || entity, 'Actual', account, CAST(NULL AS STRING),
+SELECT ticker, fiscal_year, ticker || '.' || entity, 'Actual_XBRL', account, CAST(NULL AS STRING), 'GAAP',
        value_usd_m, CAST(NULL AS DOUBLE), CAST(NULL AS DOUBLE), 'xbrl_segments', accession
 FROM silver_segment_actuals
 UNION ALL
-SELECT ticker, fiscal_year, ticker || '.' || segment, 'Actual', 'ProgramCharge', program,
+SELECT ticker, fiscal_year, ticker || '.' || segment, 'Actual', 'ProgramCharge', program, 'disclosed',
        -amount_usd_m, CAST(NULL AS DOUBLE), CAST(NULL AS DOUBLE), 'disclosure', accession
 FROM silver_charges
 UNION ALL
-SELECT ticker, fiscal_year, entity, 'Actual', account, CAST(NULL AS STRING),
+SELECT ticker, fiscal_year, entity, 'Actual', account, CAST(NULL AS STRING), 'disclosed',
        value_usd_m, CAST(NULL AS DOUBLE), CAST(NULL AS DOUBLE), 'disclosure', accession
 FROM silver_eac;
 
@@ -129,10 +161,11 @@ WITH plan AS (
          MAX(CASE WHEN account = 'SegmentOP' THEN mid END) AS plan_op
   FROM silver_guidance WHERE scenario = 'Plan' GROUP BY ticker, fiscal_year
 ), actual AS (
+  -- Actual on the same measure as the plan: the year-end release row, not the 10-K tag.
   SELECT ticker, fiscal_year,
-         MAX(CASE WHEN account = 'Sales' THEN value_usd_m END) AS actual_sales,
-         MAX(CASE WHEN account = 'SegmentOP' THEN value_usd_m END) AS actual_op
-  FROM gold_cube WHERE scenario = 'Actual' AND entity = ticker GROUP BY ticker, fiscal_year
+         MAX(CASE WHEN account = 'Sales' THEN mid END) AS actual_sales,
+         MAX(CASE WHEN account = 'SegmentOP' THEN mid END) AS actual_op
+  FROM silver_guidance WHERE scenario = 'Actual' GROUP BY ticker, fiscal_year
 ), charges AS (
   SELECT ticker, fiscal_year, SUM(amount_usd_m) AS charges FROM silver_charges GROUP BY ticker, fiscal_year
 )
@@ -148,12 +181,16 @@ LEFT JOIN charges c ON c.ticker = p.ticker AND c.fiscal_year = p.fiscal_year
 WHERE p.plan_op IS NOT NULL AND a.actual_op IS NOT NULL;
 
 CREATE OR REFRESH MATERIALIZED VIEW gold_guidance_error AS
--- How far each guidance vintage landed from the actual: actual / midpoint - 1, and whether the
--- actual fell inside the guided range.
-SELECT g.ticker, g.fiscal_year, g.scenario, g.release_date, g.account, g.low, g.high, g.mid,
-       a.value_usd_m AS actual,
-       a.value_usd_m / g.mid - 1 AS error_vs_mid,
-       CASE WHEN a.value_usd_m BETWEEN g.low AND g.high THEN 1 ELSE 0 END AS inside_range
+-- How far each guidance vintage landed from the actual on the same measure and basis:
+-- actual / midpoint - 1, and whether the actual fell inside the guided range. A vintage is scored
+-- only against an Actual printed under the same measure label (NOC 2021 Plan "mtm-adjusted eps" is
+-- not scored against a transaction-adjusted actual).
+SELECT g.ticker, g.fiscal_year, g.scenario, g.release_date, g.account, g.basis, g.measure,
+       g.low, g.high, g.mid, a.mid AS actual,
+       a.mid / g.mid - 1 AS error_vs_mid,
+       CASE WHEN a.mid BETWEEN g.low AND g.high THEN 1 ELSE 0 END AS inside_range
 FROM silver_guidance g
-JOIN gold_cube a ON a.ticker = g.ticker AND a.fiscal_year = g.fiscal_year AND a.entity = g.ticker
-                AND a.account = g.account AND a.scenario = 'Actual';
+JOIN silver_guidance a
+  ON a.ticker = g.ticker AND a.fiscal_year = g.fiscal_year AND a.entity = g.entity
+ AND a.account = g.account AND a.basis = g.basis AND a.measure = g.measure AND a.scenario = 'Actual'
+WHERE g.scenario <> 'Actual';

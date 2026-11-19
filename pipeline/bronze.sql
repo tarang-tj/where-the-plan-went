@@ -4,10 +4,10 @@ CREATE OR REFRESH MATERIALIZED VIEW bronze_facts AS
 SELECT * FROM read_files('/Volumes/workspace/wtpw/raw/facts.parquet', format => 'parquet');
 
 CREATE OR REFRESH MATERIALIZED VIEW bronze_guidance AS
-SELECT * FROM read_files('/Volumes/workspace/wtpw/raw/curated/guidance.csv', format => 'csv', header => true, inferSchema => false);
+SELECT * FROM read_files('/Volumes/workspace/wtpw/raw/curated/guidance_*.csv', format => 'csv', header => true, inferSchema => false);
 
 CREATE OR REFRESH MATERIALIZED VIEW bronze_charges AS
-SELECT * FROM read_files('/Volumes/workspace/wtpw/raw/curated/charges.csv', format => 'csv', header => true, inferSchema => false);
+SELECT * FROM read_files('/Volumes/workspace/wtpw/raw/curated/charges_*.csv', format => 'csv', header => true, inferSchema => false);
 
 CREATE OR REFRESH MATERIALIZED VIEW bronze_eac AS
-SELECT * FROM read_files('/Volumes/workspace/wtpw/raw/curated/eac.csv', format => 'csv', header => true, inferSchema => false);
+SELECT * FROM read_files('/Volumes/workspace/wtpw/raw/curated/eac_*.csv', format => 'csv', header => true, inferSchema => false);
