@@ -216,26 +216,26 @@ err_SegmentOP_Fcst_Q3_n,10.0,10,SegmentOP Fcst_Q3 vintages scored
 err_SegmentOP_Fcst_Q3_median_abs,0.006275157314473034,0.6%,median |actual / midpoint - 1|
 err_SegmentOP_Fcst_Q3_beat_share,0.7,70%,share where actual beat the midpoint
 err_SegmentOP_Fcst_Q3_inside_share,0.1,10%,share where actual fell inside the range
-err_EPS_Plan_n,22.0,22,EPS Plan vintages scored
-err_EPS_Plan_median_abs,0.05948736861515769,5.9%,median |actual / midpoint - 1|
-err_EPS_Plan_beat_share,0.6818181818181818,68%,share where actual beat the midpoint
-err_EPS_Plan_inside_share,0.18181818181818182,18%,share where actual fell inside the range
-err_EPS_Fcst_Q1_n,22.0,22,EPS Fcst_Q1 vintages scored
-err_EPS_Fcst_Q1_median_abs,0.057459693440120474,5.7%,median |actual / midpoint - 1|
-err_EPS_Fcst_Q1_beat_share,0.7727272727272727,77%,share where actual beat the midpoint
-err_EPS_Fcst_Q1_inside_share,0.09090909090909091,9%,share where actual fell inside the range
-err_EPS_Fcst_Q2_n,22.0,22,EPS Fcst_Q2 vintages scored
-err_EPS_Fcst_Q2_median_abs,0.040456871700190966,4.0%,median |actual / midpoint - 1|
-err_EPS_Fcst_Q2_beat_share,0.8181818181818182,82%,share where actual beat the midpoint
-err_EPS_Fcst_Q2_inside_share,0.09090909090909091,9%,share where actual fell inside the range
-err_EPS_Fcst_Q3_n,24.0,24,EPS Fcst_Q3 vintages scored
-err_EPS_Fcst_Q3_median_abs,0.017583325485226897,1.8%,median |actual / midpoint - 1|
-err_EPS_Fcst_Q3_beat_share,0.875,88%,share where actual beat the midpoint
-err_EPS_Fcst_Q3_inside_share,0.125,12%,share where actual fell inside the range
-err_FCF_Plan_n,16.0,16,FCF Plan vintages scored
-err_FCF_Plan_median_abs,0.0869587337478801,8.7%,median |actual / midpoint - 1|
-err_FCF_Plan_beat_share,0.6875,69%,share where actual beat the midpoint
-err_FCF_Plan_inside_share,0.25,25%,share where actual fell inside the range
+err_EPS_Plan_n,25.0,25,EPS Plan vintages scored
+err_EPS_Plan_median_abs,0.05801217038539552,5.8%,median |actual / midpoint - 1|
+err_EPS_Plan_beat_share,0.72,72%,share where actual beat the midpoint
+err_EPS_Plan_inside_share,0.16,16%,share where actual fell inside the range
+err_EPS_Fcst_Q1_n,24.0,24,EPS Fcst_Q1 vintages scored
+err_EPS_Fcst_Q1_median_abs,0.052111659937283616,5.2%,median |actual / midpoint - 1|
+err_EPS_Fcst_Q1_beat_share,0.7916666666666666,79%,share where actual beat the midpoint
+err_EPS_Fcst_Q1_inside_share,0.08333333333333333,8%,share where actual fell inside the range
+err_EPS_Fcst_Q2_n,24.0,24,EPS Fcst_Q2 vintages scored
+err_EPS_Fcst_Q2_median_abs,0.03739025090859116,3.7%,median |actual / midpoint - 1|
+err_EPS_Fcst_Q2_beat_share,0.8333333333333334,83%,share where actual beat the midpoint
+err_EPS_Fcst_Q2_inside_share,0.125,12%,share where actual fell inside the range
+err_EPS_Fcst_Q3_n,23.0,23,EPS Fcst_Q3 vintages scored
+err_EPS_Fcst_Q3_median_abs,0.01856148491879339,1.9%,median |actual / midpoint - 1|
+err_EPS_Fcst_Q3_beat_share,0.8695652173913043,87%,share where actual beat the midpoint
+err_EPS_Fcst_Q3_inside_share,0.13043478260869565,13%,share where actual fell inside the range
+err_FCF_Plan_n,17.0,17,FCF Plan vintages scored
+err_FCF_Plan_median_abs,0.08426229508196714,8.4%,median |actual / midpoint - 1|
+err_FCF_Plan_beat_share,0.6470588235294118,65%,share where actual beat the midpoint
+err_FCF_Plan_inside_share,0.29411764705882354,29%,share where actual fell inside the range
 err_FCF_Fcst_Q1_n,18.0,18,FCF Fcst_Q1 vintages scored
 err_FCF_Fcst_Q1_median_abs,0.08373829039812641,8.4%,median |actual / midpoint - 1|
 err_FCF_Fcst_Q1_beat_share,0.6666666666666666,67%,share where actual beat the midpoint

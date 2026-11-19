@@ -95,3 +95,15 @@ def test_unit_mislabel_fails(tmp_path, monkeypatch):
     assert any("printed in billions" in e for e in quote_check.check_row(lie))
     suffix = _row(quote="revenue $20.7b - $21.3b", low=20.7, high=21.3, unit="USD_B")
     assert quote_check.check_row(suffix) == []
+
+
+def test_sign_stated_in_words_fails_when_flipped(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    quote_check.filing_text.cache_clear()
+    path = cache_path("https://www.sec.gov/Archives/edgar/data/936468/000093646825000006/ex991.htm")
+    path.parent.mkdir(parents=True)
+    path.write_text("<p>adjustments decreased segment operating profit by $180 million in 2024</p>")
+    q = "decreased segment operating profit by $180 million in 2024"
+    assert quote_check.check_row(_row(quote=q, low=None, high=None, value=-180.0)) == []
+    flipped = quote_check.check_row(_row(quote=q, low=None, high=None, value=180.0))
+    assert any("only states a decrease" in e for e in flipped)

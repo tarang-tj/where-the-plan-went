@@ -1,12 +1,18 @@
-ticker,measure,family,reason
-RTX,sales,rtx_gaap_sales,"Plan labels GAAP sales ""sales""; year-end tables label the same GAAP line ""reported sales"" or ""net sales"""
-RTX,reported sales,rtx_gaap_sales,same GAAP sales line as above
-RTX,net sales,rtx_gaap_sales,income statement label for the same GAAP sales
-LHX,gaap eps,lhx_gaap_eps,GAAP diluted EPS; 2026 releases drop the GAAP prefix
-LHX,diluted eps,lhx_gaap_eps,same GAAP diluted EPS
-LHX,non-gaap diluted eps,lhx_nongaap_eps_2025def,"2025 definition (no amortization add-back); the Jan 2025 plan marks it ""(new)"""
-LHX,non-gaap diluted eps (new),lhx_nongaap_eps_2025def,same 2025 definition
-NOC,mtm-adjusted eps,noc_mtm_eps,"year-end release labels the same measure ""mtm-adjusted diluted eps"""
-NOC,mtm-adjusted diluted eps,noc_mtm_eps,same measure
-NOC,transaction-adjusted free cash flow based on current tax law,noc_txn_fcf,the forecast's tax-law assumption; the actual is reported under actual law as transaction-adjusted free cash flow
-NOC,transaction-adjusted free cash flow,noc_txn_fcf,same measure
+ticker,measure,fy_from,fy_to,family,reason
+RTX,sales,,,rtx_gaap_sales,"Plan labels GAAP sales ""sales""; year-end tables label the same GAAP line ""reported sales"" or ""net sales"""
+RTX,reported sales,,,rtx_gaap_sales,same GAAP sales line as above
+RTX,net sales,,,rtx_gaap_sales,income statement label for the same GAAP sales
+LHX,gaap eps,,,lhx_gaap_eps,GAAP diluted EPS; 2026 releases drop the GAAP prefix
+LHX,diluted eps,,,lhx_gaap_eps,same GAAP diluted EPS
+LHX,non-gaap eps,,,lhx_nongaap_eps_old,original definition (adds back acquisition amortization)
+LHX,non-gaap diluted eps,,2024,lhx_nongaap_eps_old,"the Jan 2025 release says 2024 ""Non-GAAP diluted EPS"" still includes the amortization adjustment"
+LHX,non-gaap diluted eps,2025,,lhx_nongaap_eps_2025def,from 2025 the label means the new definition (no amortization add-back)
+LHX,non-gaap diluted eps (new),,,lhx_nongaap_eps_2025def,"the Jan 2025 plan marks the new definition ""(new)"""
+NOC,mtm-adjusted eps,,2020,noc_mtm_eps,"year-end release labels the same measure ""mtm-adjusted diluted eps"""
+NOC,mtm-adjusted eps,2021,2021,noc_txn_eps,"the Q1 2021 release restates the January plan range 23.15 - 23.65 as transaction-adjusted EPS (printed prior)"
+NOC,mtm-adjusted eps,2022,,noc_mtm_eps,same measure as the year-end mtm-adjusted diluted eps
+NOC,mtm-adjusted diluted eps,,,noc_mtm_eps,same measure
+NOC,transaction-adjusted eps,,,noc_txn_eps,EPS excluding the 2021 IT services divestiture
+NOC,adjusted free cash flow,2021,2021,noc_txn_fcf,"the Q1 2021 release restates the January plan range 3,000 - 3,300 as transaction-adjusted free cash flow (printed prior)"
+NOC,transaction-adjusted free cash flow based on current tax law,,,noc_txn_fcf,the forecast's tax-law assumption; the actual is reported under actual law as transaction-adjusted free cash flow
+NOC,transaction-adjusted free cash flow,,,noc_txn_fcf,same measure

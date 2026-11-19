@@ -72,8 +72,10 @@ def numbers(bridge: pd.DataFrame, err: pd.DataFrame) -> list[dict]:
 
 
 def walks(g: pd.DataFrame, charges: pd.DataFrame) -> list[dict]:
-    fam = pd.read_csv("reference/measure_families.csv")[["ticker", "measure", "family"]]
-    g = g.merge(fam, on=["ticker", "measure"], how="left")
+    fam = pd.read_csv("reference/measure_families.csv")
+    g = g.merge(fam[["ticker", "measure", "fy_from", "fy_to", "family"]], on=["ticker", "measure"], how="left")
+    in_range = (g.fy_from.isna() | (g.fiscal_year >= g.fy_from)) & (g.fy_to.isna() | (g.fiscal_year <= g.fy_to))
+    g = g[in_range | g.family.isna()].drop(columns=["fy_from", "fy_to"])
     g["family"] = g["family"].fillna(g["measure"])
     out = []
     for (t, fy, acct, basis, measure), grp in g.groupby(["ticker", "fiscal_year", "metric", "basis", "measure"]):

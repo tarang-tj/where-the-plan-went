@@ -12,7 +12,7 @@ Lockheed 2025 shows the shape. The plan was $8,150 million. Sales volume added $
 
 ## Guidance is set to be beaten
 
-Sales beat the midpoint of the January plan in 61% of the company-years scored and landed inside the guided range in only 13%. Earnings per share beat the January midpoint in 68%. The exception is segment profit in a charge year, where the miss arrives all at once.
+Sales beat the midpoint of the January plan in 61% of the company-years scored and landed inside the guided range in only 13%. Earnings per share beat the January midpoint in 72%. The exception is segment profit in a charge year, where the miss arrives all at once.
 
 ## The outlook moves when the charge is booked
 

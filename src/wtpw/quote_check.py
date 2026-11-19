@@ -64,6 +64,7 @@ def printed(form: str, text: str) -> bool:
 
 
 NEG_WORDS = re.compile(r"unfavorabl|decreas|reduc|loss|charge|lower|negative|declin")
+POS_WORDS = re.compile(r"increas|(?<!un)favorabl|improv|higher|benefit")
 
 
 def sign_errors(value: float, forms: set[str], quote: str) -> list[str]:
@@ -79,6 +80,8 @@ def sign_errors(value: float, forms: set[str], quote: str) -> list[str]:
         return [f"value {value:g} is negative but the quote prints it as positive"]
     if value > 0 and all(negative(m) for m in hits):
         return [f"value {value:g} is positive but the quote prints it only in parentheses or with a minus"]
+    if value > 0 and NEG_WORDS.search(quote) and not POS_WORDS.search(quote):
+        return [f"value {value:g} is positive but the quote only states a decrease"]
     return []
 
 
