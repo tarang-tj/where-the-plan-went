@@ -4,8 +4,8 @@ Usage: python -m wtpw.findings   (after `python -m wtpw.pipeline local`)
 """
 from __future__ import annotations
 
-import json
 import hashlib
+import json
 from pathlib import Path
 
 import pandas as pd
