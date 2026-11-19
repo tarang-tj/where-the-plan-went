@@ -20,7 +20,7 @@ export function renderMethod(data) {
     h('p', {}, `SEC filings (earnings-release exhibits and 10-Ks) feed a Databricks medallion: bronze as filed, silver typed and keyed, `
       + `gold for analysis. The same SQL runs locally on DuckDB, and a parity check requires both engines to agree. This build read `
       + `${num(m.filings)} filings and ${num(m.facts)} XBRL facts, plus ${num(m.curated_rows)} hand-curated rows `
-      + `(guidance, EAC adjustments, program charges), at commit `, h('code', { text: m.commit }), '.'),
+      + `(guidance, EAC adjustments, program charges), built from commit `, h('code', { text: m.built_from_commit }), '.'),
     h('h3', { text: 'Gates' }),
     h('ul', {},
       h('li', {}, h('b', { text: 'Quote check. ' }), 'Every hand-entered number cites a sentence that must appear word for word in the cached filing, with the number inside it.'),

@@ -53,9 +53,50 @@ def number_forms(value: float) -> set[str]:
     return forms
 
 
+def _hits(form: str, text: str) -> list[re.Match]:
+    # Whole numbers only: '6,300' does not match inside '16,300', and '2' does not match 'Q2'.
+    return list(re.finditer(rf"(?<![\w,.]){re.escape(form)}(?![\d]|[.,]\d)", text))
+
+
 def printed(form: str, text: str) -> bool:
-    """True when the number appears as a whole number: '6,300' does not match inside '16,300'."""
-    return re.search(rf"(?<![\d,.]){re.escape(form)}(?![\d]|[.,]\d)", text) is not None
+    """True when the number appears in the text as a whole number."""
+    return bool(_hits(form, text))
+
+
+NEG_WORDS = re.compile(r"unfavorabl|decreas|reduc|loss|charge|lower|negative|declin")
+
+
+def sign_errors(value: float, forms: set[str], quote: str) -> list[str]:
+    """A negative value must be printed negative: '(442)', '-442' or next to a loss word.
+    A positive value must not be printed only in parentheses (accounting negative)."""
+    hits = [m for f in forms for m in _hits(f, quote)]
+    if not hits:
+        return []
+    def negative(m):
+        before = quote[max(0, m.start() - 4):m.start()]
+        return "(" in before or before.rstrip().endswith("-")
+    if value < 0 and not any(negative(m) for m in hits) and not NEG_WORDS.search(quote):
+        return [f"value {value:g} is negative but the quote prints it as positive"]
+    if value > 0 and all(negative(m) for m in hits):
+        return [f"value {value:g} is positive but the quote prints it only in parentheses or with a minus"]
+    return []
+
+
+def unit_errors(row: pd.Series, quote: str) -> list[str]:
+    unit = str(row.get("unit", ""))
+    if unit == "USD_B":
+        b_suffix = any(quote[m.end():m.end() + 1] == "b"  # LHX prints "$20.7b - $21.3b"
+                       for col in VALUE_COLS if col in row and pd.notna(row[col])
+                       for f in number_forms(float(row[col])) for m in _hits(f, quote))
+        if "billion" not in quote and not b_suffix:
+            return ["unit USD_B but the quote does not say billion (or print a b suffix)"]
+    if unit == "USD_M":
+        for col in VALUE_COLS:
+            if col in row and pd.notna(row[col]):
+                for f in number_forms(float(row[col])):
+                    if any(quote[m.end():m.end() + 9].strip().startswith("billion") for m in _hits(f, quote)):
+                        return [f"unit USD_M but {row[col]} is printed in billions"]
+    return []
 
 
 def check_row(row: pd.Series) -> list[str]:
@@ -73,6 +114,12 @@ def check_row(row: pd.Series) -> list[str]:
         has_value = col in row and pd.notna(row[col])
         if has_value and not any(printed(form, quote) for form in number_forms(float(row[col]))):
             errors.append(f"{col}={row[col]} not printed in quote")
+    errors += unit_errors(row, quote)
+    # Only EAC values carry a sign. Charges are losses stored positive and printed either way
+    # ("(555)" in a table, "$950 million" in prose); guidance ranges are positive levels.
+    if "value" in row and pd.notna(row["value"]):
+        v = float(row["value"])
+        errors += sign_errors(v, number_forms(v), quote)
     return errors
 
 

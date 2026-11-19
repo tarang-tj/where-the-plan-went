@@ -6,11 +6,13 @@ Every January, Lockheed Martin, Northrop Grumman, RTX and L3Harris publish a pla
 
 ## What it found
 
-- Ten company-years have a dollar plan for segment operating profit. Four of them missed by more than $300 million, and in each one the losses the company tied to named programs covered at least 98% of the miss. Lockheed 2025: plan $8,150M, higher sales +$88M, three second-quarter reach-forward losses -$1,615M, everything else +$120M, actual $6,743M.
-- The outlook did not come down until the release that reported the charge. When the charge landed in the fourth quarter there was no warning: Lockheed raised its 2024 outlook to $7,475M in October and reported $6,083M.
-- Sales guidance is set to be beaten: actual sales beat the January midpoint in 68% of company-years and landed inside the guided range in only 16%.
+<!-- findings:start (rendered from docs/readme-findings-template.md by python -m wtpw.readme_block) -->
+- Of the company-years with a dollar plan for segment operating profit (10 in all), 4 missed by more than $300 million, and in each one the losses the company tied to named programs covered at least 98% of the miss. Lockheed 2025: plan $8,150M, sales volume +88M, three second-quarter reach-forward losses -1,615M, everything else +120M, actual $6,743M.
+- The outlook did not come down until the release that reported the charge. When the charge landed in the fourth quarter there was no warning: Lockheed's October 2024 outlook was $7,475M, above its plan, and it reported $6,083M.
+- Sales guidance is set to be beaten: actual sales beat the January midpoint in 61% of company-years and landed inside the guided range in only 13%.
+<!-- findings:end -->
 
-Every number above is generated into [outputs/numbers.csv](outputs/numbers.csv); the memo is rendered from it and fails if a number is typed by hand.
+Every number above is generated into [outputs/numbers.csv](outputs/numbers.csv); this block and the memo are rendered from it, and the build fails if a number is typed by hand or the README drifts.
 
 ## How it works
 

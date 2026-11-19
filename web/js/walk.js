@@ -76,6 +76,7 @@ export function renderHero(w) {
   const st = story(w);
   const hero = document.getElementById('hero');
   hero.dataset.key = `${w.ticker}-${w.fiscal_year}-${w.account}`;
+  hero.dataset.measure = `${w.basis}|${w.measure}`;
   fill('hero-kicker', `Where the plan went · ${w.ticker} ${w.fiscal_year}`);
   fill('hero-h', st.text);
   const done = w.vintages[w.vintages.length - 1].scenario === 'Actual';

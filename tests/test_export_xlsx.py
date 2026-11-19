@@ -54,3 +54,17 @@ def test_program_formulas_match_evm_csv(cells):
         assert round(cells(sheet, f"H{r}"), 3) == pytest.approx(p.cpi, abs=1e-9), (p.month, "cpi")
         assert round(cells(sheet, f"I{r}"), 3) == pytest.approx(p.spi, abs=1e-9), (p.month, "spi")
         assert round(cells(sheet, f"J{r}"), 3) == pytest.approx(p.eac_composite, abs=1e-9), (p.month, "eac")
+
+
+def test_eac_sheet_money_column_is_millions(tmp_path):
+    """LMT 2018-2022 NetEAC is printed in billions; the $M column must hold 1,900 not 1.9."""
+    import openpyxl
+
+    from wtpw.export_xlsx import build
+    path = tmp_path / "pack.xlsx"
+    build(path)
+    ws = openpyxl.load_workbook(path)["EAC"]
+    head = [c.value for c in ws[1]]
+    rows = [dict(zip(head, (c.value for c in r))) for r in ws.iter_rows(min_row=2)]
+    lmt18 = next(r for r in rows if r["ticker"] == "LMT" and r["fiscal_year"] == 2018 and r["metric"] == "NetEAC")
+    assert lmt18["unit"] == "USD_B" and lmt18["value_usd_m"] == 1900.0

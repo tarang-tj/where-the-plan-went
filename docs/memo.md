@@ -8,11 +8,11 @@
 
 Of the company-years scored, 10 have a dollar plan for segment operating profit (Lockheed 2019 to 2025, Northrop 2023 to 2025). 4 of them came in more than $300 million below plan. In each of those, losses the company itself tied to named programs covered at least 98% of the miss. In the other years, no company-year finished more than $46 million below plan.
 
-Lockheed 2025 shows the shape. The plan was $8,150 million. Higher sales added $88 million at the planned margin. Second-quarter reach-forward losses on a classified Aeronautics program, the Canadian Maritime Helicopter Program and the Turkish Utility Helicopter Program took $1,615 million. Everything else added $120 million, and the actual was $6,743 million.
+Lockheed 2025 shows the shape. The plan was $8,150 million. Sales volume added $88 million at the planned margin. Second-quarter reach-forward losses on a classified Aeronautics program, the Canadian Maritime Helicopter Program and the Turkish Utility Helicopter Program took $1,615 million. Everything else added $120 million, and the actual was $6,743 million.
 
 ## Guidance is set to be beaten
 
-Sales beat the midpoint of the January plan in 68% of the company-years scored and landed inside the guided range in only 16%. Earnings per share beat the January midpoint in 65%. The exception is segment profit in a charge year, where the miss arrives all at once.
+Sales beat the midpoint of the January plan in 61% of the company-years scored and landed inside the guided range in only 13%. Earnings per share beat the January midpoint in 68%. The exception is segment profit in a charge year, where the miss arrives all at once.
 
 ## The outlook moves when the charge is booked
 

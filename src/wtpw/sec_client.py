@@ -46,7 +46,10 @@ def cache_path(url: str) -> Path:
     parsed = urlparse(url)
     if parsed.query:
         raise ValueError(f"query strings are not cacheable by path: {url}")
-    return RAW / parsed.netloc / parsed.path.lstrip("/")
+    path = RAW / parsed.netloc / parsed.path.lstrip("/")
+    if not path.resolve().is_relative_to(RAW.resolve()):  # a name with ".." from an index.json
+        raise ValueError(f"refusing to cache outside {RAW}: {url}")
+    return path
 
 
 def _throttle() -> None:
@@ -92,7 +95,9 @@ def get(url: str, retries: int = 4) -> bytes:
         if any(m in body for m in BLOCK_MARKERS):
             raise SecBlocked(f"SEC returned a block page with HTTP 200 for {url}")
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_bytes(body)
+        part = path.with_name(path.name + ".part")
+        part.write_bytes(body)
+        os.replace(part, path)  # atomic: an interrupted download never leaves a truncated cache file
         _record(url, path, body)
         return body
     raise RuntimeError(f"unreachable: retries exhausted for {url}")

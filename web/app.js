@@ -1,5 +1,5 @@
 // Entry: load data.json, hold the selection, wire selectors, render every section.
-import { h, ACCOUNTS, NAMES } from './js/util.js';
+import { h, ACCOUNTS, NAMES, measureId, measureLabel } from './js/util.js';
 import { renderHero } from './js/walk.js';
 import { renderBridge } from './js/bridge.js';
 import { renderPattern, renderErrors } from './js/pattern.js';
@@ -18,29 +18,23 @@ async function load() {
   return res.json();
 }
 
-// One walk per company-year-account: prefer plan and actual both present, then the most releases.
-function pickWalks(walks) {
-  const score = (w) => {
-    const sc = w.vintages.map((v) => v.scenario);
-    return (sc.includes('Plan') && sc.includes('Actual') ? 100 : 0) + sc.length;
-  };
-  const out = new Map();
-  for (const w of walks) {
-    const k = key(w.ticker, w.fiscal_year, w.account);
-    if (!out.has(k) || score(w) > score(out.get(k))) out.set(k, w);
-  }
-  return out;
-}
+// Default walk per company-year-account when several measures exist: plan and actual both present, then most releases.
+const score = (w) => {
+  const sc = w.vintages.map((v) => v.scenario);
+  return (sc.includes('Plan') && sc.includes('Actual') ? 100 : 0) + sc.length;
+};
 
 function start(data) {
-  const picked = pickWalks(data.walks);
-  const all = [...picked.values()];
-  const state = { ...DEFAULT };
+  const all = data.walks;
+  const state = { ...DEFAULT, measure: '' };
   const sel = { ticker: document.getElementById('pick-ticker'), year: document.getElementById('pick-year'),
-    account: document.getElementById('pick-account') };
+    account: document.getElementById('pick-account'), measure: document.getElementById('pick-measure') };
+  const options = () => all.filter((w) => key(w.ticker, w.fiscal_year, w.account) === key(state.ticker, state.year, state.account))
+    .sort((a, b) => score(b) - score(a));
+  const current = () => options().find((w) => measureId(w) === state.measure);
 
-  function setOptions(node, values, current, label) {
-    node.replaceChildren(...values.map((v) => h('option', { value: v, selected: String(v) === String(current) }, label(v))));
+  function setOptions(node, values, now, label) {
+    node.replaceChildren(...values.map((v) => h('option', { value: v, selected: String(v) === String(now) }, label(v))));
   }
 
   function sync() {
@@ -50,15 +44,19 @@ function start(data) {
     if (!years.includes(state.year)) {
       state.year = years.reduce((best, y) => (Math.abs(y - state.year) < Math.abs(best - state.year) ? y : best), years[0]);
     }
-    const accts = Object.keys(ACCOUNTS).filter((a) => picked.has(key(state.ticker, state.year, a)));
+    const accts = Object.keys(ACCOUNTS).filter((a) => all.some((w) => key(w.ticker, w.fiscal_year, w.account) === key(state.ticker, state.year, a)));
     if (!accts.includes(state.account)) state.account = accts[0];
+    const ms = options();
+    if (!ms.some((w) => measureId(w) === state.measure)) state.measure = measureId(ms[0]);
     setOptions(sel.ticker, tickers, state.ticker, (t) => `${NAMES[t] ?? t} (${t})`);
     setOptions(sel.year, years, state.year, String);
     setOptions(sel.account, accts, state.account, (a) => ACCOUNTS[a]);
+    setOptions(sel.measure, ms.map(measureId), state.measure, (id) => measureLabel(ms.find((w) => measureId(w) === id)));
+    sel.measure.disabled = ms.length < 2;
   }
 
   function drawSized() {
-    renderHero(picked.get(key(state.ticker, state.year, state.account)));
+    renderHero(current());
     renderBridge(data, state.ticker, state.year);
     renderProgram(data);
   }
@@ -66,14 +64,14 @@ function start(data) {
   function render() {
     sync();
     drawSized();
-    renderCube(data, picked, state, select);
+    renderCube(data, all, state, select);
     document.querySelectorAll('#pattern-chart .prow[data-key]').forEach((b) => {
       b.classList.toggle('sel', b.dataset.key === `${state.ticker}-${state.year}` && state.account === 'SegmentOP');
     });
   }
 
-  function select(ticker, year, account) {
-    Object.assign(state, { ticker, year, account });
+  function select(ticker, year, account, measure = state.measure) {
+    Object.assign(state, { ticker, year, account, measure });
     render();
     document.getElementById('hero').scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth' });
     sel.ticker.focus({ preventScroll: true });
@@ -82,6 +80,7 @@ function start(data) {
   sel.ticker.addEventListener('change', () => { state.ticker = sel.ticker.value; render(); });
   sel.year.addEventListener('change', () => { state.year = Number(sel.year.value); render(); });
   sel.account.addEventListener('change', () => { state.account = sel.account.value; render(); });
+  sel.measure.addEventListener('change', () => { state.measure = sel.measure.value; render(); });
 
   renderPattern(data, select);
   renderErrors(data);

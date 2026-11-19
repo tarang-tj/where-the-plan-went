@@ -63,3 +63,35 @@ def test_number_must_be_whole():
 def test_whole_values_match_printed_decimals():
     assert any(quote_check.printed(f, "eps of ~$26.00 - $26.30") for f in quote_check.number_forms(26.0))
     assert not any(quote_check.printed(f, "eps of ~$126.00") for f in quote_check.number_forms(26.0))
+
+
+SIGNED = ("<p>unfavorable eac adjustments (442) (512)</p><p>net eac adjustments 209 410</p>"
+          "<p>revenue $20.7b - $21.3b guidance</p><p>sales of $86.5 - $87.0 billion</p>")
+
+
+def _signed_cache(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    quote_check.filing_text.cache_clear()
+    path = cache_path("https://www.sec.gov/Archives/edgar/data/936468/000093646825000006/ex991.htm")
+    path.parent.mkdir(parents=True)
+    path.write_text(SIGNED)
+
+
+def test_sign_flip_fails(tmp_path, monkeypatch):
+    _signed_cache(tmp_path, monkeypatch)
+    row = _row(quote="unfavorable eac adjustments (442) (512)", low=None, high=None, value=-442.0)
+    assert quote_check.check_row(row) == []
+    flipped = _row(quote="unfavorable eac adjustments (442) (512)", low=None, high=None, value=442.0)
+    assert any("positive but the quote prints it only in parentheses" in e for e in quote_check.check_row(flipped))
+    neg_net = _row(quote="net eac adjustments 209 410", low=None, high=None, value=-209.0)
+    assert any("negative but the quote prints it as positive" in e for e in quote_check.check_row(neg_net))
+
+
+def test_unit_mislabel_fails(tmp_path, monkeypatch):
+    _signed_cache(tmp_path, monkeypatch)
+    ok_b = _row(quote="sales of $86.5 - $87.0 billion", low=86.5, high=87.0, unit="USD_B")
+    assert quote_check.check_row(ok_b) == []
+    lie = _row(quote="sales of $86.5 - $87.0 billion", low=86.5, high=87.0, unit="USD_M")
+    assert any("printed in billions" in e for e in quote_check.check_row(lie))
+    suffix = _row(quote="revenue $20.7b - $21.3b", low=20.7, high=21.3, unit="USD_B")
+    assert quote_check.check_row(suffix) == []

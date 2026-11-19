@@ -8,7 +8,7 @@
 
 Of the company-years scored, {{bridge_company_years}} have a dollar plan for segment operating profit (Lockheed 2019 to 2025, Northrop 2023 to 2025). {{large_misses}} of them came in more than {{large_miss_threshold}} below plan. In each of those, losses the company itself tied to named programs covered at least {{large_miss_min_charge_cover}} of the miss. In the other years, no company-year finished more than ${{other_years_worst_miss_abs}} million below plan.
 
-Lockheed 2025 shows the shape. The plan was ${{bridge_LMT_2025_plan_op}} million. Higher sales added ${{bridge_LMT_2025_volume_abs}} million at the planned margin. Second-quarter reach-forward losses on a classified Aeronautics program, the Canadian Maritime Helicopter Program and the Turkish Utility Helicopter Program took ${{bridge_LMT_2025_named_charges_abs}} million. Everything else added ${{bridge_LMT_2025_other_abs}} million, and the actual was ${{bridge_LMT_2025_actual_op}} million.
+Lockheed 2025 shows the shape. The plan was ${{bridge_LMT_2025_plan_op}} million. Sales volume {{bridge_LMT_2025_volume_verb}} ${{bridge_LMT_2025_volume_abs}} million at the planned margin. Second-quarter reach-forward losses on a classified Aeronautics program, the Canadian Maritime Helicopter Program and the Turkish Utility Helicopter Program took ${{bridge_LMT_2025_named_charges_abs}} million. Everything else {{bridge_LMT_2025_other_verb}} ${{bridge_LMT_2025_other_abs}} million, and the actual was ${{bridge_LMT_2025_actual_op}} million.
 
 ## Guidance is set to be beaten
 

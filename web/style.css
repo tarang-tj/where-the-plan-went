@@ -97,6 +97,9 @@ svg a:hover .bar, svg a:hover .dot, svg a:hover .wf { opacity: 1; filter: bright
 .cube tr.sel th { box-shadow: inset 3px 0 0 var(--blue); }
 .rowbtn { font: 600 14px var(--mono); color: var(--blue); background: none; border: 0; padding: 0; cursor: pointer; }
 .neg { color: var(--red); } .pos { color: var(--green); }
+.cube td.meas { font: 12px/1.3 var(--sans); color: var(--muted); text-align: left; overflow-wrap: anywhere; }
+.cube thead th:nth-child(2) { text-align: left; }
+select:disabled { opacity: .75; }
 
 /* program */
 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
@@ -123,7 +126,8 @@ svg a:hover .bar, svg a:hover .dot, svg a:hover .wf { opacity: 1; filter: bright
   h2 { font-size: 23px; }
   .sub { font-size: 15px; }
   .pick label { flex: 1 1 30%; min-width: 0; }
-  .pick label:first-child { flex-basis: 100%; }
+  .pick label:first-child, .pick label.measure { flex-basis: 100%; }
+  .cube td.meas { font-size: 11px; max-width: 96px; }
   select { min-width: 0; width: 100%; font-size: 14px; }
   .cube { font-size: 13px; }
   .cube th, .cube td { padding: 7px 4px; }

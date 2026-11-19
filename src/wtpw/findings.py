@@ -38,18 +38,26 @@ def numbers(bridge: pd.DataFrame, err: pd.DataFrame) -> list[dict]:
     large = b[b.miss <= -LARGE_MISS]
     add("bridge_company_years", len(b), "{:d}", "company-years with a dollar segment-profit plan and actual")
     add("large_misses", len(large), "{:d}", f"misses of more than ${LARGE_MISS:.0f}M below plan")
+    if large.empty:
+        raise ValueError("no large misses: the headline finding no longer applies")
     cover = (-large.named_charges / -large.miss)
     add("large_miss_min_charge_cover", float(cover.min()), "{:.0%}", "smallest share of a large miss covered by named charges")
     rest = b[b.miss > -LARGE_MISS]
     add("other_years_worst_miss", float(rest.miss.min()), "{:+,.0f}", "worst plan variance among the other years, $M")
-    add("other_years_worst_miss_abs", abs(float(rest.miss.min())), "{:,.0f}", "same, unsigned for prose")
+    worst = float(rest.miss.min()) + 0.0
+    if worst >= 0:
+        raise ValueError("every other year beat plan; the 'below plan' prose no longer applies")
+    add("other_years_worst_miss_abs", abs(worst), "{:,.0f}", "same, unsigned for prose (always below plan)")
     for r in b.itertuples():
         k = f"{r.ticker}_{r.fiscal_year}"
         for col in ("plan_op", "volume", "named_charges", "other", "actual_op", "miss"):
-            v = float(getattr(r, col))
+            v = float(getattr(r, col)) + 0.0  # + 0.0 turns -0.0 into 0.0, so nothing prints "-0"
             add(f"bridge_{k}_{col}", v, "{:,.0f}" if col in ("plan_op", "actual_op") else "{:+,.0f}",
                 f"{r.ticker} {r.fiscal_year} {col}, $M")
             add(f"bridge_{k}_{col}_abs", abs(v), "{:,.0f}", f"{r.ticker} {r.fiscal_year} {col}, $M, unsigned for prose")
+            # Direction words come from the sign, so prose using an _abs key cannot state the wrong way.
+            rows.append({"key": f"bridge_{k}_{col}_verb", "value": v, "display": "added" if v >= 0 else "took away",
+                         "note": "direction word for the matching _abs key"})
     for acct in ("Sales", "SegmentOP", "EPS", "FCF"):
         for sc in ("Plan", "Fcst_Q1", "Fcst_Q2", "Fcst_Q3"):
             x = err[(err.account == acct) & (err.scenario == sc)]
@@ -64,6 +72,9 @@ def numbers(bridge: pd.DataFrame, err: pd.DataFrame) -> list[dict]:
 
 
 def walks(g: pd.DataFrame, charges: pd.DataFrame) -> list[dict]:
+    fam = pd.read_csv("reference/measure_families.csv")[["ticker", "measure", "family"]]
+    g = g.merge(fam, on=["ticker", "measure"], how="left")
+    g["family"] = g["family"].fillna(g["measure"])
     out = []
     for (t, fy, acct, basis, measure), grp in g.groupby(["ticker", "fiscal_year", "metric", "basis", "measure"]):
         grp = grp.assign(k=grp.vintage.map(ORDER.index)).sort_values("k")
@@ -72,6 +83,7 @@ def walks(g: pd.DataFrame, charges: pd.DataFrame) -> list[dict]:
         ch = charges[(charges.ticker == t) & (charges.fiscal_year == fy)] if acct == "SegmentOP" else charges.iloc[0:0]
         out.append({
             "ticker": t, "fiscal_year": int(fy), "account": acct, "basis": basis, "measure": measure,
+            "family": grp.family.iloc[0],
             "unit": "USD_per_share" if grp.unit.iloc[0] == "USD_per_share" else "USD_M",
             "vintages": [{"scenario": r.vintage, "date": r.release_date,
                           "low": float(r.low) * (1000 if r.unit == "USD_B" else 1),
@@ -87,8 +99,9 @@ def walks(g: pd.DataFrame, charges: pd.DataFrame) -> list[dict]:
 def main() -> None:
     OUT.mkdir(exist_ok=True)
     WEB.mkdir(exist_ok=True)
-    bridge = pd.read_csv(GOLD / "gold_bridge.csv")
-    err = pd.read_csv(GOLD / "gold_guidance_error.csv")
+    bridge = pd.read_csv(GOLD / "gold_bridge.csv").sort_values(["ticker", "fiscal_year"], ignore_index=True)
+    err = pd.read_csv(GOLD / "gold_guidance_error.csv").sort_values(
+        ["ticker", "fiscal_year", "account", "basis", "measure", "scenario"], ignore_index=True)
     nums = numbers(bridge, err)
     g, charges, eac = _curated("guidance"), _curated("charges"), _curated("eac")
     n_filings = int(pd.read_csv(WORK / "filings.csv").shape[0])
@@ -108,13 +121,17 @@ def main() -> None:
         {"key": "charge_threshold", "value": 100.0, "display": "$100 million",
          "note": "curation contract: a program qualifies at this annual loss"},
     ]
+    keys = [n["key"] for n in nums]
+    dup = {k for k in keys if keys.count(k) > 1}
+    if dup:
+        raise ValueError(f"duplicate numbers.csv keys: {sorted(dup)}")
     pd.DataFrame(nums).to_csv(OUT / "numbers.csv", index=False)
     # Undefined values (TCPI at completion) become null: browsers reject a bare NaN in JSON.
     program = {name: pd.read_csv(f"data/program/program_{name}.csv").astype(object)
                .where(lambda d: d.notna(), None).to_dict("records") for name in ("evm", "revrec")}
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
     data = {
-        "meta": {"commit": commit, "filings": n_filings, "facts": n_facts,
+        "meta": {"built_from_commit": commit, "filings": n_filings, "facts": n_facts,
                  "curated_rows": int(len(g) + len(charges) + len(eac))},
         "numbers": {n["key"]: {"value": n["value"], "display": n["display"]} for n in nums},
         "walks": walks(g, charges),

@@ -1,0 +1,12 @@
+ticker,measure,family,reason
+RTX,sales,rtx_gaap_sales,"Plan labels GAAP sales ""sales""; year-end tables label the same GAAP line ""reported sales"" or ""net sales"""
+RTX,reported sales,rtx_gaap_sales,same GAAP sales line as above
+RTX,net sales,rtx_gaap_sales,income statement label for the same GAAP sales
+LHX,gaap eps,lhx_gaap_eps,GAAP diluted EPS; 2026 releases drop the GAAP prefix
+LHX,diluted eps,lhx_gaap_eps,same GAAP diluted EPS
+LHX,non-gaap diluted eps,lhx_nongaap_eps_2025def,"2025 definition (no amortization add-back); the Jan 2025 plan marks it ""(new)"""
+LHX,non-gaap diluted eps (new),lhx_nongaap_eps_2025def,same 2025 definition
+NOC,mtm-adjusted eps,noc_mtm_eps,"year-end release labels the same measure ""mtm-adjusted diluted eps"""
+NOC,mtm-adjusted diluted eps,noc_mtm_eps,same measure
+NOC,transaction-adjusted free cash flow based on current tax law,noc_txn_fcf,the forecast's tax-law assumption; the actual is reported under actual law as transaction-adjusted free cash flow
+NOC,transaction-adjusted free cash flow,noc_txn_fcf,same measure

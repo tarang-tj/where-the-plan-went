@@ -7,3 +7,4 @@ data/work/
 .databricks/
 .pytest_cache/
 .ruff_cache/
+data/program/

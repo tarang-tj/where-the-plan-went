@@ -16,19 +16,21 @@ import sys
 
 import duckdb
 
+from wtpw import reconcile_guidance
 from wtpw.pipeline import WORK
 from wtpw.quote_check import filing_text, normalize
 
 # Breaks in the guidance chain that the filing itself explains. Each needs a phrase that must
-# appear in the cited release, so an exception is evidence, not a waiver.
+# appear in the cited release, and the exact printed prior it explains (silver units), so an
+# exception is evidence, not a waiver, and a later edit to the row still fails.
 CHAIN_EXCEPTIONS = {
     ("LMT", 2021, "EPS", "Fcst_Q3"): (
-        936468, "0000936468-21-000098", "ex991q32021.htm", "current update 1 august 2021",
+        936468, "0000936468-21-000098", "ex991q32021.htm", "current update 1 august 2021", (21.95, 22.25),
         ("Prior column is an off-cycle August 2021 outlook (after the pension settlement charge), "
         "not the Q2 release; that update is not an Item 2.02 earnings release.")),
     ("RTX", 2023, "Sales", "Fcst_Q3"): (
         101829, "0000101829-23-000034", "a2023-10x248xkerexhibit99.htm",
-        "reported sales of approximately $68.5 billion, up from $67.5 - $68.5 billion",
+        "reported sales of approximately $68.5 billion, up from $67.5 - $68.5 billion", (67500.0, 68500.0),
         ("Prior is a reported-sales outlook issued between the Q2 and Q3 releases (the powder metal "
         "quarter), outside the Item 2.02 releases indexed here; Q2 printed only $73.0 - $74.0 billion.")),
 }
@@ -145,8 +147,9 @@ def main() -> int:
     for r in chain.itertuples(index=False):
         if (r.prior_low, r.prior_high) != (r.prev_low, r.prev_high):
             exc = CHAIN_EXCEPTIONS.get((r.ticker, r.fiscal_year, r.account, r.scenario))
-            if exc and normalize(exc[3]) in filing_text(exc[0], exc[1], exc[2]):
-                print(f"  explained {r.ticker} {r.fiscal_year} {r.account} {r.scenario}: {exc[4]}")
+            pinned = exc and (r.prior_low, r.prior_high) == exc[4]
+            if pinned and normalize(exc[3]) in filing_text(exc[0], exc[1], exc[2]):
+                print(f"  explained {r.ticker} {r.fiscal_year} {r.account} {r.scenario}: {exc[5]}")
                 continue
             failures += 1
             print(f"  FAIL {r.ticker} {r.fiscal_year} {r.account} {r.scenario}: printed prior "
@@ -159,6 +162,7 @@ def main() -> int:
             failures += 1
             print(f"  FAIL {r.ticker} {r.fiscal_year} {r.account} ({r.measure}): release {r.release_actual:,.0f}"
                   f" vs XBRL {r.xbrl:,.0f} ({gap:+.2%})")
+    failures += reconcile_guidance.run(con)
     print("reconcile:", "FAIL" if failures else "PASS", f"({failures} failures)")
     return 1 if failures else 0
 

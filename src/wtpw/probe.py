@@ -6,6 +6,7 @@ Usage: python -m wtpw.probe [web_dir]   (exit 1 on any failure)
 from __future__ import annotations
 
 import functools
+import json
 import re
 import sys
 import threading
@@ -45,7 +46,34 @@ def serve(root: Path) -> ThreadingHTTPServer:
     return server
 
 
-def check_page(browser, base: str, width: int, height: int) -> list[str]:
+def _num(text: str) -> float:
+    """'-1,615', '−950', '+88', '$300 million' -> magnitude as a float (signs and commas stripped)."""
+    m = re.search(r"\d[\d,]*(?:\.\d+)?", text or "")
+    return float(m.group().replace(",", "")) if m else float("nan")
+
+
+def check_numbers(page, numbers: dict) -> list[str]:
+    """The default view must print exactly the values in data.json numbers (catches a wrong number, not just a crash)."""
+    fails = []
+    want = {k: _num(numbers[f"bridge_LMT_2025_{k}"]["display"]) for k in ("plan_op", "named_charges", "actual_op")}
+    totals = page.locator("#bridge-chart text.wv.total").all_text_contents()
+    charges = page.locator("#bridge-chart text.wv.charge").all_text_contents()
+    got = {"plan_op": _num(totals[0]) if totals else None, "actual_op": _num(totals[-1]) if totals else None,
+           "named_charges": sum(_num(t) for t in charges)}
+    row = "#cube-table tr[data-key='LMT-2025']"
+    got_cube = {"plan_op": _num(page.inner_text(f"{row} td.plan")), "actual_op": _num(page.inner_text(f"{row} td.actual"))}
+    for k, v in want.items():
+        if got[k] != v:
+            fails.append(f"bridge {k} shows {got[k]}, numbers says {v}")
+        if k in got_cube and got_cube[k] != v:
+            fails.append(f"cube LMT 2025 {k} shows {got_cube[k]}, numbers says {v}")
+    threshold = numbers["large_miss_threshold"]["display"]
+    if threshold not in page.inner_text("#pattern-text"):
+        fails.append(f"pattern sentence lacks the large-miss threshold {threshold!r}")
+    return fails
+
+
+def check_page(browser, base: str, width: int, height: int, numbers: dict) -> list[str]:
     fails: list[str] = []
     host = urlparse(base).netloc
     ctx = browser.new_context(viewport={"width": width, "height": height})
@@ -66,6 +94,7 @@ def check_page(browser, base: str, width: int, height: int) -> list[str]:
             fails.append(f"default selection is {page.get_attribute('#hero', 'data-key')}, want {DEFAULT_KEY}")
         if "950" not in page.inner_text("#callout"):
             fails.append("callout does not list the 950 charge")
+        fails += check_numbers(page, numbers)
         lay = page.evaluate(OVERFLOW_JS)
         if lay["scroll"] > lay["width"] or lay["bad"]:
             fails.append(f"wider than the {width}px viewport: scrollWidth={lay['scroll']} {lay['bad']}")
@@ -93,14 +122,16 @@ def run(root: Path = WEB) -> int:
     server = serve(root)
     base = f"http://127.0.0.1:{server.server_address[1]}/"
     fails: list[str] = []
+    numbers = json.loads((root / "data.json").read_text())["numbers"]
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch(channel="chrome")
             for w, h in SIZES:
-                fails += check_page(browser, base, w, h)
+                fails += check_page(browser, base, w, h, numbers)
             browser.close()
     finally:
         server.shutdown()
+        server.server_close()
     for f in fails:
         print("FAIL", f)
     print(f"probe: {'FAIL' if fails else 'PASS'} ({len(fails)} failures) serving {root} at {base}")

@@ -115,7 +115,13 @@ def build(out: Path = OUT, gold: Path = GOLD, curated: Path = Path("curated"),
                "cik", "accession", "document"]])
     guidance_sheet(wb, pd.read_csv(gold / "gold_guidance_error.csv"), links)
     cube_sheet(wb, pd.read_csv(gold / "gold_cube.csv"))
-    curated_sheet(wb, "EAC", _curated(curated, "eac"), "value")
+    eac = _curated(curated, "eac")
+    # The curated value is as printed (some LMT years in billions); the sheet's money column is $M.
+    eac.insert(eac.columns.get_loc("value") + 1, "value_usd_m",
+               eac["value"].astype(float) * eac["unit"].map({"USD_B": 1000.0, "USD_M": 1.0}))
+    if eac["value_usd_m"].isna().any():
+        raise ValueError("EAC row with a unit other than USD_M or USD_B")
+    curated_sheet(wb, "EAC", eac, "value_usd_m")
     curated_sheet(wb, "Charges", _curated(curated, "charges"), "amount")
     program_sheet(wb, pd.read_csv(program / "program_evm.csv"))
     sources_sheet(wb, pd.read_csv(work / "filings.csv"), manifest)

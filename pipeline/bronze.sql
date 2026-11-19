@@ -11,3 +11,6 @@ SELECT * FROM read_files('/Volumes/workspace/wtpw/raw/curated/charges_*.csv', fo
 
 CREATE OR REFRESH MATERIALIZED VIEW bronze_eac AS
 SELECT * FROM read_files('/Volumes/workspace/wtpw/raw/curated/eac_*.csv', format => 'csv', header => true, inferSchema => false);
+
+CREATE OR REFRESH MATERIALIZED VIEW bronze_measure_families AS
+SELECT * FROM read_files('/Volumes/workspace/wtpw/raw/reference/measure_families.csv', format => 'csv', header => true, inferSchema => false);

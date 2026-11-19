@@ -26,6 +26,7 @@ reconcile: local
 upload:     ## push inputs to the Unity Catalog volume
 	$(DBX) fs cp data/work/facts.parquet $(VOL)/facts.parquet --overwrite
 	$(DBX) fs cp -r curated $(VOL)/curated --overwrite
+	$(DBX) fs cp -r reference $(VOL)/reference --overwrite
 deploy: render
 	$(DBX) bundle deploy
 run:
@@ -39,7 +40,7 @@ findings: local
 probe:      ## boot the page in Chrome at 1440 and 375 px
 	$(PY) -m wtpw.probe
 
-gate: lint test contract quotes reconcile findings memo probe
+gate: lint local program test contract quotes reconcile findings xlsx memo probe
 	@echo "local gate: PASS"
 
 .PHONY: xlsx memo
@@ -47,3 +48,4 @@ xlsx:       ## Excel FP&A pack from the gold tables -> outputs/where-the-plan-we
 	$(PY) -m wtpw.export_xlsx
 memo:       ## docs/memo-template.md -> docs/memo.md + outputs/memo.pdf; fails on a hand-typed number
 	$(PY) -m wtpw.memo
+	$(PY) -m wtpw.readme_block

@@ -9,9 +9,11 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import sys
 import time
+from collections import Counter
 from pathlib import Path
 
 import pandas as pd
@@ -21,6 +23,7 @@ from wtpw.pipeline import GOLD_EXPORT, WORK
 CLI = os.environ.get("DATABRICKS_CLI", str(Path.home() / ".local/bin/databricks"))
 PROFILE = os.environ.get("DATABRICKS_PROFILE", "pf")
 SCHEMA = "workspace.wtpw"
+DATE = re.compile(r"^\d{4}-\d{2}-\d{2}")
 
 
 def _api(method: str, path: str, body: dict | None = None) -> dict:
@@ -60,7 +63,9 @@ def normalize(df: pd.DataFrame) -> list[tuple]:
         try:
             return f"{float(v):.6f}"
         except (TypeError, ValueError):
-            return str(v)[:10] if str(v)[:4].isdigit() and len(str(v)) >= 10 else str(v)
+            # Only real dates are cut to YYYY-MM-DD (DuckDB and Spark print timestamps differently);
+            # accession numbers like 0000936468-25-000006 are compared in full.
+            return str(v)[:10] if DATE.match(str(v)) else str(v)
     return sorted(tuple(cell(v) for v in row) for row in df.astype(object).itertuples(index=False))
 
 
@@ -71,7 +76,7 @@ def main() -> int:
         remote = query(f"SELECT {', '.join(local.columns)} FROM {SCHEMA}.{name}", wh)
         a, b = normalize(local), normalize(remote)
         only_local, only_remote = set(a) - set(b), set(b) - set(a)
-        ok = not only_local and not only_remote and len(a) == len(b)
+        ok = Counter(a) == Counter(b)  # multiset: duplicate rows must match in count too
         failures += not ok
         print(f"{name}: local {len(a)} rows, databricks {len(b)} rows -> {'MATCH' if ok else 'DIFF'}")
         for row in sorted(only_local)[:3]:

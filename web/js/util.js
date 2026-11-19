@@ -101,3 +101,7 @@ export const SHORT = { LMT: 'Lockheed', NOC: 'Northrop', RTX: 'RTX', LHX: 'L3Har
 export const ACCOUNTS = { Sales: 'Sales', SegmentOP: 'Segment profit', EPS: 'EPS', FCF: 'Free cash flow' };
 export const STAGES = { Plan: 'Plan', Fcst_Q1: 'Q1 update', Fcst_Q2: 'Q2 update', Fcst_Q3: 'Q3 update', Actual: 'Actual' };
 export const QUARTERS = { Q1: 'first-quarter', Q2: 'second-quarter', Q3: 'third-quarter', Q4: 'fourth-quarter', FY: 'full-year' };
+
+// A walk is one company-year-account on one measure; basis + measure tell GAAP and non-GAAP apart.
+export const measureId = (w) => `${w.basis}|${w.measure}`;
+export const measureLabel = (w) => `${w.measure} (${w.basis})`;

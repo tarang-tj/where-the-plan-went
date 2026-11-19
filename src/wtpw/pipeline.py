@@ -26,6 +26,7 @@ BRONZE = {
     "bronze_guidance": ("curated/guidance_*.csv", "curated/guidance_*.csv", "csv"),
     "bronze_charges": ("curated/charges_*.csv", "curated/charges_*.csv", "csv"),
     "bronze_eac": ("curated/eac_*.csv", "curated/eac_*.csv", "csv"),
+    "bronze_measure_families": ("reference/measure_families.csv", "reference/measure_families.csv", "csv"),
 }
 GOLD_EXPORT = ["gold_cube", "gold_bridge", "gold_guidance_error"]
 
