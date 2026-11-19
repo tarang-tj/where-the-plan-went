@@ -8,7 +8,7 @@ import formulas
 import pandas as pd
 import pytest
 
-from wtpw.export_xlsx import build
+from wtpw.export_xlsx import _sorted, build
 
 GOLD = Path("data/work/gold_local")
 BOOK = "where-the-plan-went.xlsx"
@@ -25,7 +25,7 @@ def cells(tmp_path_factory):
 
 
 def test_bridge_formulas_match_gold(cells):
-    gold = pd.read_csv(GOLD / "gold_bridge.csv")
+    gold = _sorted(GOLD / "gold_bridge.csv")
     assert len(gold) > 0
     for r, b in enumerate(gold.itertuples(index=False), 2):
         assert (cells("Bridge", f"A{r}"), cells("Bridge", f"B{r}")) == (b.ticker, b.fiscal_year)
@@ -35,7 +35,7 @@ def test_bridge_formulas_match_gold(cells):
 
 
 def test_guidance_error_formulas_match_gold(cells):
-    gold = pd.read_csv(GOLD / "gold_guidance_error.csv")
+    gold = _sorted(GOLD / "gold_guidance_error.csv")
     assert len(gold) > 0
     for r, g in enumerate(gold.itertuples(index=False), 2):
         key = (g.ticker, g.fiscal_year, g.scenario, g.account, g.measure)
