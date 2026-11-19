@@ -107,6 +107,12 @@ def _lines(path: Path) -> str:
     return str(sum(1 for line in path.read_text().splitlines() if line.strip()))
 
 
+def _sorted(path: Path) -> pd.DataFrame:
+    """Gold CSVs come out of DuckDB in arbitrary row order; sort on every column for a stable sheet."""
+    df = pd.read_csv(path)
+    return df.sort_values(list(df.columns), na_position="first", kind="mergesort", ignore_index=True)
+
+
 def _pin_zip(path: Path) -> None:
     """Rewrite the .xlsx with fixed zip entry dates and modified time, so an unchanged build is
     byte-identical (openpyxl stamps the save time in both places)."""
@@ -124,12 +130,12 @@ def build(out: Path = OUT, gold: Path = GOLD, curated: Path = Path("curated"),
           manifest: Path = Path("data/raw/manifest.jsonl")) -> Path:
     wb = Workbook()
     readme(wb)
-    bridge_sheet(wb, pd.read_csv(gold / "gold_bridge.csv"))
+    bridge_sheet(wb, _sorted(gold / "gold_bridge.csv"))
     links = (_curated(curated, "guidance").rename(columns={"vintage": "scenario", "metric": "account"})
              [["ticker", "fiscal_year", "scenario", "release_date", "account", "basis", "measure",
                "cik", "accession", "document"]])
-    guidance_sheet(wb, pd.read_csv(gold / "gold_guidance_error.csv"), links)
-    cube_sheet(wb, pd.read_csv(gold / "gold_cube.csv"))
+    guidance_sheet(wb, _sorted(gold / "gold_guidance_error.csv"), links)
+    cube_sheet(wb, _sorted(gold / "gold_cube.csv"))
     eac = _curated(curated, "eac")
     # The curated value is as printed (some LMT years in billions); the sheet's money column is $M.
     eac.insert(eac.columns.get_loc("value") + 1, "value_usd_m",
