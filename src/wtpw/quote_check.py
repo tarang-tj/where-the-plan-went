@@ -19,7 +19,7 @@ import pandas as pd
 from wtpw.sec_client import cache_path
 
 CURATED = Path("curated")
-VALUE_COLS = ("low", "high", "value", "amount")
+VALUE_COLS = ("low", "high", "prior_low", "prior_high", "value", "amount")
 _DASHES = dict.fromkeys(map(ord, "\u2010\u2011\u2012\u2013\u2014\u2212"), "-")
 _SPACES = dict.fromkeys(map(ord, "\u00a0\u2009\u202f\u200b"), " ")
 

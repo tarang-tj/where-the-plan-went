@@ -1,9 +1,0 @@
-ticker,cik,fiscal_year,vintage,release_date,accession,document,entity,metric,basis,low,high,unit,quote
-LMT,936468,2025,Plan,2025-01-28,0000936468-25-000006,ex991q42024.htm,LMT,Sales,GAAP,73750,74750,USD_M,"2025 outlook 2 net sales $71,043 $71,208 ~$73,750 - $74,750"
-LMT,936468,2025,Plan,2025-01-28,0000936468-25-000006,ex991q42024.htm,LMT,SegmentOP,non-GAAP,8100,8200,USD_M,"business segment operating profit 1 $6,083 $7,893 ~$8,100 - $8,200"
-LMT,936468,2025,Fcst_Q1,2025-04-22,0000936468-25-000031,ex991q12025.htm,LMT,Sales,GAAP,73750,74750,USD_M,"2025 outlook sales ~$73,750 - $74,750"
-LMT,936468,2025,Fcst_Q1,2025-04-22,0000936468-25-000031,ex991q12025.htm,LMT,SegmentOP,non-GAAP,8100,8200,USD_M,"2025 outlook sales ~$73,750 - $74,750 business segment operating profit 1 ~$8,100 - $8,200"
-LMT,936468,2025,Fcst_Q2,2025-07-22,0001628280-25-035502,ex991q22025.htm,LMT,Sales,GAAP,73750,74750,USD_M,"current update april 2025 sales ~$73,750 - $74,750"
-LMT,936468,2025,Fcst_Q2,2025-07-22,0001628280-25-035502,ex991q22025.htm,LMT,SegmentOP,non-GAAP,6600,6700,USD_M,"business segment operating profit 1 ~$6,600 - $6,700 ~$8,100 - $8,200"
-LMT,936468,2025,Fcst_Q3,2025-10-21,0001628280-25-045582,ex991q32025.htm,LMT,Sales,GAAP,74250,74750,USD_M,"current update 2 july 2025 sales ~$74,250 - $74,750"
-LMT,936468,2025,Fcst_Q3,2025-10-21,0001628280-25-045582,ex991q32025.htm,LMT,SegmentOP,non-GAAP,6675,6725,USD_M,"business segment operating profit 1 ~$6,675 - $6,725 ~$6,600 - $6,700"

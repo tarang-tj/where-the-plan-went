@@ -39,8 +39,7 @@ def fetch_company(ticker: str, since: str, until: str) -> list[dict]:
             if row["instance"] is None:
                 raise RuntimeError(f"{ticker} {f.accessionNumber}: no unique XBRL instance in {names}")
             get(filing_url(f.cik, f.folder, row["instance"]))
-            if ticker == "BA" or f.form == "10-K":
-                get(filing_url(f.cik, f.folder, f.primaryDocument))  # text for charges and EAC quotes
+            get(filing_url(f.cik, f.folder, f.primaryDocument))  # text for charges and EAC quotes
         else:
             row["exhibit"] = earnings_exhibit(names)
             if row["exhibit"] is None:
