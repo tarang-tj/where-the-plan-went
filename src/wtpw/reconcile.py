@@ -16,8 +16,18 @@ import sys
 
 import duckdb
 
+from wtpw.quote_check import filing_text, normalize
+
 from wtpw.pipeline import WORK
 
+# Breaks in the guidance chain that the filing itself explains. Each needs a phrase that must
+# appear in the cited release, so an exception is evidence, not a waiver.
+CHAIN_EXCEPTIONS = {
+    ("LMT", 2021, "EPS", "Fcst_Q3"): (
+        936468, "0000936468-21-000098", "ex991q32021.htm", "current update 1 august 2021",
+        "Prior column is an off-cycle August 2021 outlook (after the pension settlement charge), "
+        "not the Q2 release; that update is not an Item 2.02 earnings release."),
+}
 TOLERANCE = 0.01  # 1% of consolidated sales (unallocated corporate and other lines)
 
 TIE_SQL = """
@@ -130,6 +140,10 @@ def main() -> int:
     print(f"[chain] {len(chain)} printed prior ranges checked")
     for r in chain.itertuples(index=False):
         if (r.prior_low, r.prior_high) != (r.prev_low, r.prev_high):
+            exc = CHAIN_EXCEPTIONS.get((r.ticker, r.fiscal_year, r.account, r.scenario))
+            if exc and normalize(exc[3]) in filing_text(exc[0], exc[1], exc[2]):
+                print(f"  explained {r.ticker} {r.fiscal_year} {r.account} {r.scenario}: {exc[4]}")
+                continue
             failures += 1
             print(f"  FAIL {r.ticker} {r.fiscal_year} {r.account} {r.scenario}: printed prior "
                   f"{r.prior_low}-{r.prior_high} != {r.prev_scenario} {r.prev_low}-{r.prev_high}")

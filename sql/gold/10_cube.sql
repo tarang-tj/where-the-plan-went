@@ -11,10 +11,9 @@ SELECT ticker, fiscal_year, ticker, 'Actual_XBRL', account, CAST(NULL AS STRING)
        value_usd_m, CAST(NULL AS DOUBLE), CAST(NULL AS DOUBLE), 'xbrl_consolidated', accession
 FROM silver_consolidated_actuals WHERE account = 'Sales'
 UNION ALL
-SELECT ticker, fiscal_year, ticker, 'Actual_XBRL', 'SegmentOP', CAST(NULL AS STRING), 'segments',
-       SUM(value_usd_m), CAST(NULL AS DOUBLE), CAST(NULL AS DOUBLE), 'xbrl_segments', MIN(accession)
-FROM silver_segment_actuals WHERE account = 'SegmentOP'
-GROUP BY ticker, fiscal_year
+SELECT ticker, fiscal_year, ticker, 'Actual_XBRL', 'SegmentOP', CAST(NULL AS STRING), method,
+       segment_op_usd_m, CAST(NULL AS DOUBLE), CAST(NULL AS DOUBLE), 'xbrl_segments', accession
+FROM silver_segment_totals
 UNION ALL
 SELECT ticker, fiscal_year, ticker || '.' || entity, 'Actual_XBRL', account, CAST(NULL AS STRING), 'GAAP',
        value_usd_m, CAST(NULL AS DOUBLE), CAST(NULL AS DOUBLE), 'xbrl_segments', accession

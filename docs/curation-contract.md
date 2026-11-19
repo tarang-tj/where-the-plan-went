@@ -28,11 +28,11 @@ One file per kind and company: `curated/guidance_<TICKER>.csv`, `curated/charges
 
 ## EAC adjustments (`eac_<TICKER>.csv`)
 
-`metric` is `NetEAC`, `FavEAC` or `UnfavEAC`, in USD millions, signed so that positive means the adjustment increased operating income. `entity` is the ticker or `<TICKER>.<Segment>`. Source: that year's 10-K, or a later 10-K when it restates the year (cite the one you quote).
+`metric` is `NetEAC`, `FavEAC` or `UnfavEAC`, in `USD_M` or `USD_B` as printed, signed so that positive means the adjustment increased operating income. `entity` is the ticker or `<TICKER>.<Segment>`. Source: that year's 10-K, or a later 10-K when it restates the year (cite the one you quote).
 
 ## Program charges (`charges_<TICKER>.csv`)
 
-A pre-tax loss of at least $100 million that the filing attributes to a named or described program (reach-forward losses, loss provisions on a specific contract). `amount` is positive for a loss. `quarter` is the quarter the filing says the loss was recognized, or `FY` when only the annual amount is stated. `basis` is `reach-forward loss` when the filing uses that term, otherwise `charge`.
+A program qualifies when the filing attributes at least $100 million of pre-tax losses to it in one fiscal year (reach-forward losses, or loss provisions on a specific contract). Record the full-year amount with quarter `FY`, unless all of it was recognized in one stated quarter, so rows never overlap and never drop part of a year. `amount` is positive for a loss. `basis` is `reach-forward loss` when the filing uses that term, otherwise `charge`.
 
 ## Coverage notes
 

@@ -51,3 +51,15 @@ def test_uncached_filing_fails(tmp_path, monkeypatch):
     _cache(tmp_path, monkeypatch)
     errors = quote_check.check_row(_row(document="missing.htm"))
     assert errors and errors[0].startswith("not cached")
+
+
+def test_number_must_be_whole():
+    assert quote_check.printed("6,300", "cash of $6,300 million")
+    assert not quote_check.printed("6,300", "cash of $16,300 million")
+    assert not quote_check.printed("6,300", "cash of $6,300.5 million")
+    assert quote_check.printed("8.1", "about $8.1 billion.")
+
+
+def test_whole_values_match_printed_decimals():
+    assert any(quote_check.printed(f, "eps of ~$26.00 - $26.30") for f in quote_check.number_forms(26.0))
+    assert not any(quote_check.printed(f, "eps of ~$126.00") for f in quote_check.number_forms(26.0))

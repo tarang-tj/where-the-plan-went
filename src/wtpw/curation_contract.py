@@ -31,7 +31,7 @@ ENUMS = {
     ("charges", "basis"): {"reach-forward loss", "charge"},
     ("charges", "unit"): {"USD_M"},
     ("eac", "metric"): {"NetEAC", "FavEAC", "UnfavEAC"},
-    ("eac", "unit"): {"USD_M"},
+    ("eac", "unit"): {"USD_M", "USD_B"},
 }
 ACCESSION = re.compile(r"^\d{10}-\d{2}-\d{6}$")
 

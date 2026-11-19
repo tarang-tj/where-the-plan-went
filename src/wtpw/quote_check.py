@@ -44,10 +44,18 @@ def filing_text(cik: int, accession: str, document: str) -> str:
 
 
 def number_forms(value: float) -> set[str]:
-    """Printed forms a value may take in a filing: 8100 -> {'8,100', '8100'}; 8.1 -> {'8.1', '8.10'}."""
+    """Printed forms a value may take in a filing: 8100 -> {'8,100', '8100', '8,100.0', ...};
+    26.0 -> {'26', '26.0', '26.00'}; 8.1 -> {'8.1', '8.10'}."""
     v = abs(value)
-    forms = {f"{v:,.0f}", f"{v:.0f}"} if v == int(v) else {f"{v:g}", f"{v:.2f}", f"{v:,.2f}"}
-    return {f.rstrip(".") for f in forms}
+    forms = {f"{v:,.2f}", f"{v:.2f}", f"{v:,.1f}", f"{v:.1f}", f"{v:g}"}
+    if v == int(v):
+        forms |= {f"{v:,.0f}", f"{v:.0f}"}
+    return forms
+
+
+def printed(form: str, text: str) -> bool:
+    """True when the number appears as a whole number: '6,300' does not match inside '16,300'."""
+    return re.search(rf"(?<![\d,.]){re.escape(form)}(?![\d]|[.,]\d)", text) is not None
 
 
 def check_row(row: pd.Series) -> list[str]:
@@ -63,7 +71,7 @@ def check_row(row: pd.Series) -> list[str]:
         errors.append("quote not found in filing text")
     for col in VALUE_COLS:
         has_value = col in row and pd.notna(row[col])
-        if has_value and not any(form in quote for form in number_forms(float(row[col]))):
+        if has_value and not any(printed(form, quote) for form in number_forms(float(row[col]))):
             errors.append(f"{col}={row[col]} not printed in quote")
     return errors
 

@@ -9,3 +9,126 @@ LMT,936468,2025,Fcst_Q3,2025-10-21,0001628280-25-045582,ex991q32025.htm,LMT,Sale
 LMT,936468,2025,Fcst_Q3,2025-10-21,0001628280-25-045582,ex991q32025.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,6675,6725,USD_M,6600,6700,"business segment operating profit 1 ~$6,675 - $6,725 ~$6,600 - $6,700"
 LMT,936468,2025,Actual,2026-01-29,0001628280-26-003970,ex991q42025.htm,LMT,Sales,GAAP,net sales,75048,75048,USD_M,,,"2025 2024 sales $ 20,321 $ 18,622 $ 75,048 $ 71,043"
 LMT,936468,2025,Actual,2026-01-29,0001628280-26-003970,ex991q42025.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,6743,6743,USD_M,,,"business segment operating profit 1,2 $ 2,058 $ 426 $ 6,743 $ 6,083"
+LMT,936468,2019,Plan,2019-01-29,0000936468-19-000004,ex991q42018.htm,LMT,Sales,GAAP,net sales,55750,57250,USD_M,,,"2019 current outlook net sales $55,750 - $57,250"
+LMT,936468,2019,Plan,2019-01-29,0000936468-19-000004,ex991q42018.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,6000,6150,USD_M,,,"net sales $55,750 - $57,250 business segment operating profit $6,000 - $6,150"
+LMT,936468,2019,Plan,2019-01-29,0000936468-19-000004,ex991q42018.htm,LMT,EPS,GAAP,diluted earnings per share,19.15,19.45,USD_per_share,,,diluted earnings per share 2 $19.15 - $19.45
+LMT,936468,2019,Fcst_Q1,2019-04-23,0000936468-19-000019,ex991q12019.htm,LMT,Sales,GAAP,net sales,56750,58250,USD_M,55750,57250,"net sales $56,750 - $58,250 $55,750 - $57,250"
+LMT,936468,2019,Fcst_Q1,2019-04-23,0000936468-19-000019,ex991q12019.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,6100,6250,USD_M,6000,6150,"business segment operating profit $6,100 - $6,250 $6,000 - $6,150"
+LMT,936468,2019,Fcst_Q1,2019-04-23,0000936468-19-000019,ex991q12019.htm,LMT,EPS,GAAP,diluted earnings per share,20.05,20.35,USD_per_share,19.15,19.45,diluted earnings per share 2 $20.05 - $20.35 $19.15 - $19.45
+LMT,936468,2019,Fcst_Q2,2019-07-23,0000936468-19-000055,ex991q22019.htm,LMT,Sales,GAAP,net sales,58250,59750,USD_M,56750,58250,"net sales $58,250 - $59,750 $56,750 - $58,250"
+LMT,936468,2019,Fcst_Q2,2019-07-23,0000936468-19-000055,ex991q22019.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,6325,6475,USD_M,6100,6250,"business segment operating profit $6,325 - $6,475 $6,100 - $6,250"
+LMT,936468,2019,Fcst_Q2,2019-07-23,0000936468-19-000055,ex991q22019.htm,LMT,EPS,GAAP,diluted earnings per share,20.85,21.15,USD_per_share,20.05,20.35,diluted earnings per share 2 $20.85 - $21.15 $20.05 - $20.35
+LMT,936468,2019,Fcst_Q3,2019-10-22,0000936468-19-000066,ex991q32019.htm,LMT,Sales,GAAP,net sales,59100,59100,USD_M,58250,59750,"net sales ~$59,100 $58,250 - $59,750"
+LMT,936468,2019,Fcst_Q3,2019-10-22,0000936468-19-000066,ex991q32019.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,6425,6425,USD_M,6325,6475,"business segment operating profit ~$6,425 $6,325 - $6,475"
+LMT,936468,2019,Fcst_Q3,2019-10-22,0000936468-19-000066,ex991q32019.htm,LMT,EPS,GAAP,diluted earnings per share,21.55,21.55,USD_per_share,20.85,21.15,diluted earnings per share 2 ~$21.55 $20.85 - $21.15
+LMT,936468,2019,Actual,2020-01-28,0000936468-20-000010,ex991q42019.htm,LMT,Sales,GAAP,net sales,59812,59812,USD_M,,,"net sales $ 15,878 $ 14,411 $ 59,812 $ 53,762"
+LMT,936468,2019,Actual,2020-01-28,0000936468-20-000010,ex991q42019.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,6574,6574,USD_M,,,"business segment operating profit 1 $ 1,640 $ 1,515 $ 6,574 $ 5,877"
+LMT,936468,2019,Actual,2020-01-28,0000936468-20-000010,ex991q42019.htm,LMT,EPS,GAAP,diluted earnings per share,21.95,21.95,USD_per_share,,,diluted earnings per share $ 5.29 $ 4.39 $ 21.95 $ 17.59
+LMT,936468,2020,Plan,2020-01-28,0000936468-20-000010,ex991q42019.htm,LMT,Sales,GAAP,net sales,62750,64250,USD_M,,,"2020 current outlook 3 net sales $62,750 - $64,250"
+LMT,936468,2020,Plan,2020-01-28,0000936468-20-000010,ex991q42019.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,6800,6950,USD_M,,,"net sales $62,750 - $64,250 business segment operating profit $6,800 - $6,950"
+LMT,936468,2020,Plan,2020-01-28,0000936468-20-000010,ex991q42019.htm,LMT,EPS,GAAP,diluted earnings per share,23.65,23.95,USD_per_share,,,diluted earnings per share 2 $23.65 - $23.95
+LMT,936468,2020,Fcst_Q1,2020-04-21,0000936468-20-000041,ex991q12020.htm,LMT,Sales,GAAP,net sales,62250,64000,USD_M,62750,64250,"net sales $62,250 - $64,000 $62,750 - $64,250"
+LMT,936468,2020,Fcst_Q1,2020-04-21,0000936468-20-000041,ex991q12020.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,6800,6950,USD_M,6800,6950,"business segment operating profit $6,800 - $6,950 $6,800 - $6,950"
+LMT,936468,2020,Fcst_Q1,2020-04-21,0000936468-20-000041,ex991q12020.htm,LMT,EPS,GAAP,diluted earnings per share,23.65,23.95,USD_per_share,23.65,23.95,diluted earnings per share 3 $23.65 - $23.95 $23.65 - $23.95
+LMT,936468,2020,Fcst_Q2,2020-07-21,0000936468-20-000113,ex991q22020.htm,LMT,Sales,GAAP,net sales,63500,65000,USD_M,62250,64000,"net sales $63,500 - $65,000 $62,250 - $64,000"
+LMT,936468,2020,Fcst_Q2,2020-07-21,0000936468-20-000113,ex991q22020.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,6900,7050,USD_M,6800,6950,"business segment operating profit $6,900 - $7,050 $6,800 - $6,950"
+LMT,936468,2020,Fcst_Q2,2020-07-21,0000936468-20-000113,ex991q22020.htm,LMT,EPS,GAAP,diluted earnings per share,23.75,24.05,USD_per_share,23.65,23.95,diluted earnings per share $23.75 - $24.05 $23.65 - $23.95
+LMT,936468,2020,Fcst_Q3,2020-10-20,0000936468-20-000120,ex991q32020.htm,LMT,Sales,GAAP,net sales,65250,65250,USD_M,63500,65000,"net sales ~$65,250 $63,500 - $65,000"
+LMT,936468,2020,Fcst_Q3,2020-10-20,0000936468-20-000120,ex991q32020.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7125,7125,USD_M,6900,7050,"business segment operating profit ~$7,125 $6,900 - $7,050 net fas/cas"
+LMT,936468,2020,Fcst_Q3,2020-10-20,0000936468-20-000120,ex991q32020.htm,LMT,EPS,GAAP,diluted earnings per share from continuing operations,24.45,24.45,USD_per_share,23.75,24.05,diluted earnings per share from continuing operations ~$24.45 $23.75 - $24.05
+LMT,936468,2020,Actual,2021-01-26,0000936468-21-000009,ex991q42020.htm,LMT,Sales,GAAP,net sales,65398,65398,USD_M,,,"net sales $ 17,032 $ 15,878 $ 65,398 $ 59,812"
+LMT,936468,2020,Actual,2021-01-26,0000936468-21-000009,ex991q42020.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7152,7152,USD_M,,,"business segment operating profit 1 $ 1,875 $ 1,640 $ 7,152 $ 6,574"
+LMT,936468,2020,Actual,2021-01-26,0000936468-21-000009,ex991q42020.htm,LMT,EPS,GAAP,diluted earnings per share from continuing operations,24.50,24.50,USD_per_share,,,"diluted earnings (loss) per share from continuing operations 3,4,6 $ 6.38 $ 5.29 $ 24.50 $ 21.95"
+LMT,936468,2021,Plan,2021-01-26,0000936468-21-000009,ex991q42020.htm,LMT,Sales,GAAP,net sales,67100,68500,USD_M,,,"2021 current outlook 1 net sales $67,100 - $68,500"
+LMT,936468,2021,Plan,2021-01-26,0000936468-21-000009,ex991q42020.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7355,7495,USD_M,,,"net sales $67,100 - $68,500 business segment operating profit $7,355 - $7,495"
+LMT,936468,2021,Plan,2021-01-26,0000936468-21-000009,ex991q42020.htm,LMT,EPS,GAAP,diluted earnings per share,26.00,26.30,USD_per_share,,,diluted earnings per share $26.00 - $26.30
+LMT,936468,2021,Fcst_Q1,2021-04-20,0000936468-21-000040,ex991q12021.htm,LMT,Sales,GAAP,net sales,67300,68700,USD_M,67100,68500,"net sales $67,300 - $68,700 $67,100 - $68,500"
+LMT,936468,2021,Fcst_Q1,2021-04-20,0000936468-21-000040,ex991q12021.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7380,7520,USD_M,7355,7495,"business segment operating profit $7,380 - $7,520 $7,355 - $7,495"
+LMT,936468,2021,Fcst_Q1,2021-04-20,0000936468-21-000040,ex991q12021.htm,LMT,EPS,GAAP,diluted earnings per share,26.40,26.70,USD_per_share,26.00,26.30,diluted earnings per share $26.40 - $26.70 $26.00 - $26.30
+LMT,936468,2021,Fcst_Q2,2021-07-26,0000936468-21-000069,ex991q22021.htm,LMT,Sales,GAAP,net sales,67300,68700,USD_M,67300,68700,"net sales $67,300 - $68,700 $67,300 - $68,700"
+LMT,936468,2021,Fcst_Q2,2021-07-26,0000936468-21-000069,ex991q22021.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7380,7520,USD_M,7380,7520,"business segment operating profit $7,380 - $7,520 $7,380 - $7,520"
+LMT,936468,2021,Fcst_Q2,2021-07-26,0000936468-21-000069,ex991q22021.htm,LMT,EPS,GAAP,diluted earnings per share,26.70,27.00,USD_per_share,26.40,26.70,diluted earnings per share $26.70 - $27.00 $26.40 - $26.70
+LMT,936468,2021,Fcst_Q3,2021-10-26,0000936468-21-000098,ex991q32021.htm,LMT,Sales,GAAP,net sales,67000,67000,USD_M,67300,68700,"net sales ~$67,000 $67,300 - $68,700"
+LMT,936468,2021,Fcst_Q3,2021-10-26,0000936468-21-000098,ex991q32021.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7350,7350,USD_M,7380,7520,"business segment operating profit ~$7,350 $7,380 - $7,520"
+LMT,936468,2021,Fcst_Q3,2021-10-26,0000936468-21-000098,ex991q32021.htm,LMT,EPS,GAAP,diluted earnings per share,22.45,22.45,USD_per_share,21.95,22.25,diluted earnings per share ~$22.45 $21.95 - $22.25
+LMT,936468,2021,Actual,2022-01-25,0000936468-22-000006,ex991q42021.htm,LMT,Sales,GAAP,net sales,67044,67044,USD_M,,,"net sales $ 17,729 $ 17,032 $ 67,044 $ 65,398"
+LMT,936468,2021,Actual,2022-01-25,0000936468-22-000006,ex991q42021.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7379,7379,USD_M,,,"business segment operating profit 1 $ 2,014 $ 1,875 $ 7,379 $ 7,152"
+LMT,936468,2021,Actual,2022-01-25,0000936468-22-000006,ex991q42021.htm,LMT,EPS,GAAP,diluted earnings per share,22.76,22.76,USD_per_share,,,diluted earnings per share $ 7.47 $ 6.38 $ 22.76 $ 24.30
+LMT,936468,2022,Plan,2022-01-25,0000936468-22-000006,ex991q42021.htm,LMT,Sales,GAAP,net sales,66000,66000,USD_M,,,"2022 current outlook 1 net sales ~$66,000"
+LMT,936468,2022,Plan,2022-01-25,0000936468-22-000006,ex991q42021.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7175,7175,USD_M,,,"net sales ~$66,000 business segment operating profit 2 ~$7,175"
+LMT,936468,2022,Plan,2022-01-25,0000936468-22-000006,ex991q42021.htm,LMT,EPS,GAAP,diluted earnings per share,26.70,26.70,USD_per_share,,,"net fas/cas pension adjustment 3,4 ~$2,260 diluted earnings per share ~$26.70"
+LMT,936468,2022,Fcst_Q1,2022-04-19,0000936468-22-000044,ex991q12022.htm,LMT,Sales,GAAP,net sales,66000,66000,USD_M,,,"current 2022 outlook 1 net sales ~$66,000"
+LMT,936468,2022,Fcst_Q1,2022-04-19,0000936468-22-000044,ex991q12022.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7175,7175,USD_M,,,"net sales ~$66,000 business segment operating profit 2 ~$7,175"
+LMT,936468,2022,Fcst_Q1,2022-04-19,0000936468-22-000044,ex991q12022.htm,LMT,EPS,GAAP,diluted earnings per share,26.70,26.70,USD_per_share,,,"total fas/cas pension adjustment 3 ~$2,260 diluted earnings per share ~$26.70"
+LMT,936468,2022,Fcst_Q2,2022-07-19,0000936468-22-000091,ex991q22022.htm,LMT,Sales,GAAP,net sales,65250,65250,USD_M,66000,66000,"net sales ~$65,250 ~$66,000"
+LMT,936468,2022,Fcst_Q2,2022-07-19,0000936468-22-000091,ex991q22022.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7175,7175,USD_M,7175,7175,"business segment operating profit 2 ~$7,175 ~$7,175"
+LMT,936468,2022,Fcst_Q2,2022-07-19,0000936468-22-000091,ex991q22022.htm,LMT,EPS,GAAP,diluted earnings per share,21.55,21.55,USD_per_share,26.70,26.70,diluted earnings per share ~$21.55 ~$26.70
+LMT,936468,2022,Fcst_Q3,2022-10-18,0000936468-22-000118,ex991q32022.htm,LMT,Sales,GAAP,net sales,65250,65250,USD_M,,,"current 2022 outlook 1 net sales ~$65,250"
+LMT,936468,2022,Fcst_Q3,2022-10-18,0000936468-22-000118,ex991q32022.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7175,7175,USD_M,,,"net sales ~$65,250 business segment operating profit 2 ~$7,175"
+LMT,936468,2022,Fcst_Q3,2022-10-18,0000936468-22-000118,ex991q32022.htm,LMT,EPS,GAAP,diluted earnings per share,21.55,21.55,USD_per_share,,,"net fas/cas pension adjustment - adjusted 2,3 ~$2,210 diluted earnings per share ~$21.55"
+LMT,936468,2022,Actual,2023-01-24,0000936468-23-000004,ex991q42022.htm,LMT,Sales,GAAP,net sales,65984,65984,USD_M,,,"net sales $ 18,991 $ 17,729 $ 65,984 $ 67,044"
+LMT,936468,2022,Actual,2023-01-24,0000936468-23-000004,ex991q42022.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7219,7219,USD_M,,,"business segment operating profit 1 $ 2,006 $ 2,014 $ 7,219 $ 7,379"
+LMT,936468,2022,Actual,2023-01-24,0000936468-23-000004,ex991q42022.htm,LMT,EPS,GAAP,diluted earnings per share,21.66,21.66,USD_per_share,,,"diluted earnings per share 4,5 $ 7.40 $ 7.47 $ 21.66 $ 22.76"
+LMT,936468,2022,Actual,2023-01-24,0000936468-23-000004,ex991q42022.htm,LMT,FCF,non-GAAP,free cash flow,6132,6132,USD_M,,,"free cash flow 1,6 $ 1,235 $ 3,661 $ 6,132 $ 7,699"
+LMT,936468,2023,Plan,2023-01-24,0000936468-23-000004,ex991q42022.htm,LMT,Sales,GAAP,net sales,65000,66000,USD_M,,,"2023 outlook 1 net sales ~$65,000 - $66,000"
+LMT,936468,2023,Plan,2023-01-24,0000936468-23-000004,ex991q42022.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7255,7355,USD_M,,,"reclassification of intangible amortization expense 3 ~$245 business segment operating profit 2, 3 ~$7,255 - $7,355"
+LMT,936468,2023,Plan,2023-01-24,0000936468-23-000004,ex991q42022.htm,LMT,EPS,GAAP,diluted earnings per share,26.60,26.90,USD_per_share,,,diluted earnings per share ~$26.60 - $26.90
+LMT,936468,2023,Fcst_Q1,2023-04-18,0000936468-23-000046,ex991q12023.htm,LMT,Sales,GAAP,net sales,65000,66000,USD_M,,,"2023 outlook 1 net sales ~$65,000 - $66,000"
+LMT,936468,2023,Fcst_Q1,2023-04-18,0000936468-23-000046,ex991q12023.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7255,7355,USD_M,,,"net sales ~$65,000 - $66,000 business segment operating profit 2, 3 ~$7,255 - $7,355"
+LMT,936468,2023,Fcst_Q1,2023-04-18,0000936468-23-000046,ex991q12023.htm,LMT,EPS,GAAP,diluted earnings per share,26.60,26.90,USD_per_share,,,diluted earnings per share ~$26.60 - $26.90
+LMT,936468,2023,Fcst_Q2,2023-07-18,0000936468-23-000096,ex991q22023.htm,LMT,Sales,GAAP,net sales,66250,66750,USD_M,65000,66000,"net sales ~$66,250 - $66,750 ~$65,000 - $66,000"
+LMT,936468,2023,Fcst_Q2,2023-07-18,0000936468-23-000096,ex991q22023.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7325,7375,USD_M,7255,7355,"business segment operating profit 2 ~$7,325 - $7,375 ~$7,255 - $7,355"
+LMT,936468,2023,Fcst_Q2,2023-07-18,0000936468-23-000096,ex991q22023.htm,LMT,EPS,GAAP,diluted earnings per share,27.00,27.20,USD_per_share,26.60,26.90,diluted earnings per share ~$27.00 - $27.20 ~$26.60 - $26.90
+LMT,936468,2023,Fcst_Q3,2023-10-17,0000936468-23-000121,ex991q32023.htm,LMT,Sales,GAAP,net sales,66250,66750,USD_M,,,"current 2023 outlook 1 net sales ~$66,250 - $66,750"
+LMT,936468,2023,Fcst_Q3,2023-10-17,0000936468-23-000121,ex991q32023.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7325,7375,USD_M,,,"net sales ~$66,250 - $66,750 business segment operating profit 2 ~$7,325 - $7,375"
+LMT,936468,2023,Fcst_Q3,2023-10-17,0000936468-23-000121,ex991q32023.htm,LMT,EPS,GAAP,diluted earnings per share,27.00,27.20,USD_per_share,,,diluted earnings per share ~$27.00 - $27.20
+LMT,936468,2023,Actual,2024-01-23,0000936468-24-000006,ex991q42023.htm,LMT,Sales,GAAP,net sales,67571,67571,USD_M,,,"net sales $ 18,874 $ 18,991 $ 67,571 $ 65,984 business segment"
+LMT,936468,2023,Actual,2024-01-23,0000936468-24-000006,ex991q42023.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7389,7389,USD_M,,,"business segment operating profit 1,2 $ 2,042 $ 2,068 $ 7,389 $ 7,467"
+LMT,936468,2023,Actual,2024-01-23,0000936468-24-000006,ex991q42023.htm,LMT,EPS,GAAP,diluted earnings per share,27.55,27.55,USD_per_share,,,"diluted earnings per share 4,5,6 $ 7.58 $ 7.40 $ 27.55 $ 21.66"
+LMT,936468,2023,Actual,2024-01-23,0000936468-24-000006,ex991q42023.htm,LMT,FCF,non-GAAP,free cash flow,6229,6229,USD_M,,,"free cash flow 1,7 $ 1,661 $ 1,235 $ 6,229 $ 6,132"
+LMT,936468,2024,Plan,2024-01-23,0000936468-24-000006,ex991q42023.htm,LMT,Sales,GAAP,net sales,68500,70000,USD_M,,,"2024 outlook 1 net sales $68,500 - $70,000"
+LMT,936468,2024,Plan,2024-01-23,0000936468-24-000006,ex991q42023.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7175,7375,USD_M,,,"business segment operating profit 2 $7,175- $7,375"
+LMT,936468,2024,Plan,2024-01-23,0000936468-24-000006,ex991q42023.htm,LMT,EPS,GAAP,diluted earnings per share,25.65,26.35,USD_per_share,,,diluted earnings per share 4 $25.65 - $26.35
+LMT,936468,2024,Plan,2024-01-23,0000936468-24-000006,ex991q42023.htm,LMT,FCF,non-GAAP,free cash flow,6000,6300,USD_M,,,"free cash flow 2 $6,000 - $6,300"
+LMT,936468,2024,Fcst_Q1,2024-04-23,0000936468-24-000050,ex991q12024.htm,LMT,Sales,GAAP,net sales,68500,70000,USD_M,,,"2024 outlook 1 net sales $68,500 - $70,000"
+LMT,936468,2024,Fcst_Q1,2024-04-23,0000936468-24-000050,ex991q12024.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7175,7375,USD_M,,,"business segment operating profit 2 $7,175 - $7,375"
+LMT,936468,2024,Fcst_Q1,2024-04-23,0000936468-24-000050,ex991q12024.htm,LMT,EPS,GAAP,diluted earnings per share,25.65,26.35,USD_per_share,,,diluted earnings per share 4 $25.65 - $26.35
+LMT,936468,2024,Fcst_Q1,2024-04-23,0000936468-24-000050,ex991q12024.htm,LMT,FCF,non-GAAP,free cash flow,6000,6300,USD_M,,,"free cash flow 2 $6,000 - $6,300"
+LMT,936468,2024,Fcst_Q2,2024-07-23,0000936468-24-000093,ex991q22024.htm,LMT,Sales,GAAP,net sales,70500,71500,USD_M,68500,70000,"net sales $70,500 - $71,500 $68,500 - $70,000"
+LMT,936468,2024,Fcst_Q2,2024-07-23,0000936468-24-000093,ex991q22024.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7350,7500,USD_M,7175,7375,"business segment operating profit 1 $7,350 - $7,500 $7,175 - $7,375"
+LMT,936468,2024,Fcst_Q2,2024-07-23,0000936468-24-000093,ex991q22024.htm,LMT,EPS,GAAP,diluted earnings per share,26.10,26.60,USD_per_share,25.65,26.35,diluted earnings per share 2 $26.10 - $26.60 $25.65 - $26.35
+LMT,936468,2024,Fcst_Q2,2024-07-23,0000936468-24-000093,ex991q22024.htm,LMT,FCF,non-GAAP,free cash flow,6000,6300,USD_M,6000,6300,"free cash flow 1 $6,000 - $6,300 $6,000 - $6,300"
+LMT,936468,2024,Fcst_Q3,2024-10-22,0000936468-24-000107,ex991q32024.htm,LMT,Sales,GAAP,net sales,71250,71250,USD_M,70500,71500,"net sales ~$71,250 $70,500 - $71,500"
+LMT,936468,2024,Fcst_Q3,2024-10-22,0000936468-24-000107,ex991q32024.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,7475,7475,USD_M,7350,7500,"business segment operating profit 2 ~$7,475 $7,350 - $7,500"
+LMT,936468,2024,Fcst_Q3,2024-10-22,0000936468-24-000107,ex991q32024.htm,LMT,EPS,GAAP,diluted earnings per share,26.65,26.65,USD_per_share,26.10,26.60,diluted earnings per share 3 ~$26.65 $26.10 - $26.60
+LMT,936468,2024,Fcst_Q3,2024-10-22,0000936468-24-000107,ex991q32024.htm,LMT,FCF,non-GAAP,free cash flow,6200,6200,USD_M,6000,6300,"free cash flow 2 ~$6,200 $6,000 - $6,300"
+LMT,936468,2024,Actual,2025-01-28,0000936468-25-000006,ex991q42024.htm,LMT,Sales,GAAP,net sales,71043,71043,USD_M,,,"net sales $ 18,622 $ 18,874 $ 71,043 $ 67,571 business segment"
+LMT,936468,2024,Actual,2025-01-28,0000936468-25-000006,ex991q42024.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,6083,6083,USD_M,,,"business segment operating profit 1,2 $ 426 $ 2,042 $ 6,083 $ 7,389"
+LMT,936468,2024,Actual,2025-01-28,0000936468-25-000006,ex991q42024.htm,LMT,EPS,GAAP,diluted earnings per share,22.31,22.31,USD_per_share,,,diluted earnings per share $ 2.22 $ 7.58 $ 22.31 $ 27.55
+LMT,936468,2024,Actual,2025-01-28,0000936468-25-000006,ex991q42024.htm,LMT,FCF,non-GAAP,free cash flow,5287,5287,USD_M,,,"free cash flow 1,4 $ 441 $ 1,661 $ 5,287 $ 6,229"
+LMT,936468,2025,Plan,2025-01-28,0000936468-25-000006,ex991q42024.htm,LMT,EPS,GAAP,diluted earnings per share,27.00,27.30,USD_per_share,,,diluted earnings per share $22.31 $27.99 ~$27.00 - $27.30
+LMT,936468,2025,Plan,2025-01-28,0000936468-25-000006,ex991q42024.htm,LMT,FCF,non-GAAP,free cash flow,6600,6800,USD_M,,,"free cash flow 1 $5,287 $6,122 ~$6,600 - $6,800"
+LMT,936468,2025,Fcst_Q1,2025-04-22,0000936468-25-000031,ex991q12025.htm,LMT,EPS,GAAP,diluted earnings per share,27.00,27.30,USD_per_share,,,"total fas/cas pension adjustment ~$1,125 diluted earnings per share ~$27.00 - $27.30"
+LMT,936468,2025,Fcst_Q1,2025-04-22,0000936468-25-000031,ex991q12025.htm,LMT,FCF,non-GAAP,free cash flow,6600,6800,USD_M,,,"capital expenditures ~$1,900 free cash flow 1 ~$6,600 - $6,800"
+LMT,936468,2025,Fcst_Q2,2025-07-22,0001628280-25-035502,ex991q22025.htm,LMT,EPS,GAAP,diluted earnings per share,21.70,22.00,USD_per_share,27.00,27.30,diluted earnings per share ~$21.70 - $22.00 ~$27.00 - $27.30
+LMT,936468,2025,Fcst_Q2,2025-07-22,0001628280-25-035502,ex991q22025.htm,LMT,FCF,non-GAAP,free cash flow,6600,6800,USD_M,6600,6800,"free cash flow 1 ~$6,600 - $6,800 ~$6,600 - $6,800"
+LMT,936468,2025,Fcst_Q3,2025-10-21,0001628280-25-045582,ex991q32025.htm,LMT,EPS,GAAP,diluted earnings per share,22.15,22.35,USD_per_share,21.70,22.00,diluted earnings per share ~$22.15 - $22.35 ~$21.70 - $22.00
+LMT,936468,2025,Fcst_Q3,2025-10-21,0001628280-25-045582,ex991q32025.htm,LMT,FCF,non-GAAP,free cash flow,6600,6600,USD_M,6600,6800,"free cash flow 1 ~$6,600 ~$6,600 - $6,800"
+LMT,936468,2025,Actual,2026-01-29,0001628280-26-003970,ex991q42025.htm,LMT,EPS,GAAP,diluted earnings per share,21.49,21.49,USD_per_share,,,diluted earnings per share 4 $ 5.80 $ 2.22 $ 21.49 $ 22.31
+LMT,936468,2025,Actual,2026-01-29,0001628280-26-003970,ex991q42025.htm,LMT,FCF,non-GAAP,free cash flow,6908,6908,USD_M,,,"free cash flow 1,5 $ 2,756 $ 441 $ 6,908 $ 5,287"
+LMT,936468,2026,Plan,2026-01-29,0001628280-26-003970,ex991q42025.htm,LMT,Sales,GAAP,net sales,77500,80000,USD_M,,,"2026 outlook sales $77,500 - $80,000"
+LMT,936468,2026,Plan,2026-01-29,0001628280-26-003970,ex991q42025.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,8425,8675,USD_M,,,"business segment operating profit 1 $8,425 - $8,675"
+LMT,936468,2026,Plan,2026-01-29,0001628280-26-003970,ex991q42025.htm,LMT,EPS,GAAP,diluted earnings per share,29.35,30.25,USD_per_share,,,diluted earnings per share $29.35 - $30.25
+LMT,936468,2026,Plan,2026-01-29,0001628280-26-003970,ex991q42025.htm,LMT,FCF,non-GAAP,free cash flow,6500,6800,USD_M,,,"free cash flow 1 $6,500 - $6,800"
+LMT,936468,2026,Fcst_Q1,2026-04-23,0001628280-26-026683,ex991q12026.htm,LMT,Sales,GAAP,net sales,77500,80000,USD_M,,,"2026 outlook sales $77,500 - $80,000"
+LMT,936468,2026,Fcst_Q1,2026-04-23,0001628280-26-026683,ex991q12026.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,8425,8675,USD_M,,,"business segment operating profit 1 $8,425 - $8,675"
+LMT,936468,2026,Fcst_Q1,2026-04-23,0001628280-26-026683,ex991q12026.htm,LMT,EPS,GAAP,diluted earnings per share,29.35,30.25,USD_per_share,,,diluted earnings per share $29.35 - $30.25
+LMT,936468,2026,Fcst_Q1,2026-04-23,0001628280-26-026683,ex991q12026.htm,LMT,FCF,non-GAAP,free cash flow,6500,6800,USD_M,,,"free cash flow 1 $6,500 - $6,800"
+LMT,936468,2026,Fcst_Q2,2026-07-23,0001628280-26-049277,ex991q22026.htm,LMT,Sales,GAAP,net sales,79750,81750,USD_M,77500,80000,"sales ~$79,750 - $81,750 $77,500 - $80,000"
+LMT,936468,2026,Fcst_Q2,2026-07-23,0001628280-26-049277,ex991q22026.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,8500,8700,USD_M,8425,8675,"business segment operating profit 1 ~$8,500 - $8,700 $8,425 - $8,675"
+LMT,936468,2026,Fcst_Q2,2026-07-23,0001628280-26-049277,ex991q22026.htm,LMT,EPS,GAAP,diluted earnings per share,29.95,30.65,USD_per_share,29.35,30.25,diluted earnings per share ~$29.95 - $30.65 $29.35 - $30.25
+LMT,936468,2026,Fcst_Q2,2026-07-23,0001628280-26-049277,ex991q22026.htm,LMT,FCF,non-GAAP,free cash flow,7000,7200,USD_M,6500,6800,"free cash flow 1 ~$7,000 - $7,200 $6,500 - $6,800"
+LMT,936468,2026,Fcst_Q3,2026-10-22,0001628280-26-066780,ex991q32026.htm,LMT,Sales,GAAP,net sales,80000,82000,USD_M,79750,81750,"sales ~$80,000 - $82,000 $79,750 - $81,750"
+LMT,936468,2026,Fcst_Q3,2026-10-22,0001628280-26-066780,ex991q32026.htm,LMT,SegmentOP,non-GAAP,business segment operating profit,8575,8675,USD_M,8500,8700,"business segment operating profit 1 ~$8,575 - $8,675 $8,500 - $8,700"
+LMT,936468,2026,Fcst_Q3,2026-10-22,0001628280-26-066780,ex991q32026.htm,LMT,EPS,GAAP,diluted earnings per share,30.35,30.75,USD_per_share,29.95,30.65,diluted earnings per share ~$30.35 - $30.75 $29.95 - $30.65
+LMT,936468,2026,Fcst_Q3,2026-10-22,0001628280-26-066780,ex991q32026.htm,LMT,FCF,non-GAAP,free cash flow,7800,8000,USD_M,7000,7200,"free cash flow 1 ~$7,800 - $8,000 $7,000 - $7,200"
