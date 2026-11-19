@@ -4,6 +4,8 @@ Usage: python -m wtpw.export_xlsx   -> outputs/where-the-plan-went.xlsx
 Inputs are written as values and derived columns as formulas (volume, other, check, mid, error,
 inside, CPI, SPI, EAC). tests/test_export_xlsx.py evaluates those formulas against the CSVs.
 """
+import re
+import zipfile
 from datetime import datetime
 from pathlib import Path
 
@@ -105,6 +107,18 @@ def _lines(path: Path) -> str:
     return str(sum(1 for line in path.read_text().splitlines() if line.strip()))
 
 
+def _pin_zip(path: Path) -> None:
+    """Rewrite the .xlsx with fixed zip entry dates and modified time, so an unchanged build is
+    byte-identical (openpyxl stamps the save time in both places)."""
+    with zipfile.ZipFile(path) as z:
+        entries = [(i.filename, z.read(i.filename)) for i in z.infolist()]
+    with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as z:
+        for name, data in entries:
+            if name == "docProps/core.xml":
+                data = re.sub(rb"(<dcterms:modified[^>]*>)[^<]*", rb"\g<1>2026-01-01T00:00:00Z", data)
+            z.writestr(zipfile.ZipInfo(name, date_time=(2026, 1, 1, 0, 0, 0)), data, zipfile.ZIP_DEFLATED)
+
+
 def build(out: Path = OUT, gold: Path = GOLD, curated: Path = Path("curated"),
           program: Path = Path("data/program"), work: Path = Path("data/work"),
           manifest: Path = Path("data/raw/manifest.jsonl")) -> Path:
@@ -127,10 +141,9 @@ def build(out: Path = OUT, gold: Path = GOLD, curated: Path = Path("curated"),
     program_sheet(wb, pd.read_csv(program / "program_evm.csv"))
     sources_sheet(wb, pd.read_csv(work / "filings.csv"), manifest)
     out.parent.mkdir(parents=True, exist_ok=True)
-    # Pin document timestamps so an unchanged build writes a byte-identical workbook.
-    stamp = datetime(2026, 1, 1)
-    wb.properties.created = wb.properties.modified = stamp
+    wb.properties.created = wb.properties.modified = datetime(2026, 1, 1)
     wb.save(out)
+    _pin_zip(out)
     return out
 
 
