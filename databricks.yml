@@ -1,0 +1,14 @@
+# Declarative Automation Bundle (formerly Databricks Asset Bundles).
+# Auth comes from your own CLI profile: `databricks auth login --host <workspace-url> --profile pf`.
+bundle:
+  name: where-the-plan-went
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    default: true
+    mode: development
+    workspace:
+      profile: pf

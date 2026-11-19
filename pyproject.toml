@@ -1,0 +1,22 @@
+[project]
+name = "where-the-plan-went"
+version = "0.1.0"
+description = "Defense-prime guidance (plan, forecast, actual) bridged to disclosed EAC charges, from SEC filings, on Databricks"
+requires-python = ">=3.12"
+dependencies = ["duckdb", "pandas", "pyarrow", "lxml", "openpyxl"]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff", "formulas", "playwright"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 110
