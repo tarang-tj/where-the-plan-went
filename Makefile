@@ -38,3 +38,9 @@ findings: local
 
 gate: lint test contract quotes reconcile findings
 	@echo "local gate: PASS"
+
+.PHONY: xlsx memo
+xlsx:       ## Excel FP&A pack from the gold tables -> outputs/where-the-plan-went.xlsx
+	$(PY) -m wtpw.export_xlsx
+memo:       ## docs/memo-template.md -> docs/memo.md + outputs/memo.pdf; fails on a hand-typed number
+	$(PY) -m wtpw.memo

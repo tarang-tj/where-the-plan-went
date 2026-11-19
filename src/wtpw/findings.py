@@ -42,11 +42,14 @@ def numbers(bridge: pd.DataFrame, err: pd.DataFrame) -> list[dict]:
     add("large_miss_min_charge_cover", float(cover.min()), "{:.0%}", "smallest share of a large miss covered by named charges")
     rest = b[b.miss > -LARGE_MISS]
     add("other_years_worst_miss", float(rest.miss.min()), "{:+,.0f}", "worst plan variance among the other years, $M")
+    add("other_years_worst_miss_abs", abs(float(rest.miss.min())), "{:,.0f}", "same, unsigned for prose")
     for r in b.itertuples():
         k = f"{r.ticker}_{r.fiscal_year}"
         for col in ("plan_op", "volume", "named_charges", "other", "actual_op", "miss"):
-            add(f"bridge_{k}_{col}", float(getattr(r, col)), "{:,.0f}" if col in ("plan_op", "actual_op") else "{:+,.0f}",
+            v = float(getattr(r, col))
+            add(f"bridge_{k}_{col}", v, "{:,.0f}" if col in ("plan_op", "actual_op") else "{:+,.0f}",
                 f"{r.ticker} {r.fiscal_year} {col}, $M")
+            add(f"bridge_{k}_{col}_abs", abs(v), "{:,.0f}", f"{r.ticker} {r.fiscal_year} {col}, $M, unsigned for prose")
     for acct in ("Sales", "SegmentOP", "EPS", "FCF"):
         for sc in ("Plan", "Fcst_Q1", "Fcst_Q2", "Fcst_Q3"):
             x = err[(err.account == acct) & (err.scenario == sc)]
